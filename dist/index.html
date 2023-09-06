@@ -46,6 +46,10 @@
       100% {
         transform: scale(1);
       }
+
+    }
+    .custom-karen{
+      animation: zoomInOut 5s ease-in-out infinite;
     }
   </style>
 </head>
@@ -58,7 +62,7 @@
       <ul class="flex space-x-4">
         <li><a href="#" class="text-white">Home</a></li>
         <li><a href="./about.html" class="text-white">About</a></li>
-        <li><a href="#" class="text-white">Services</a></li>
+        <li><a href="./services.html" class="text-white">Services</a></li>
         <li><a href="./register.html" class="text-white">Register</a></li>
         <li><a href="./contact.html" class="text-white">Contact</a></li>
       </ul>
@@ -151,7 +155,7 @@
   <!-- Additional Section -->
   <section class="container mx-auto mt-8">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div class="bg-white p-4 shadow-md rounded-md text-center">
+      <div class="bg-white p-4 shadow-md rounded-md text-center overflow-hidden">
         <h2 class="text-xl font-semibold mb-2">
           What does it take to become a farrier? What do they do?
         </h2>
@@ -159,9 +163,9 @@
           A farrier specializes in the hoof care of equine such as horses, ponies, mules, and donkeys. Typically, they
           clean, trim, and shoe horses’ hooves. Click image for more information.
         </p>
-        <a href="https://www.agcareers.com/career-profiles/farrier.cfm">
+        <a href="https://www.agcareers.com/career-profiles/farrier.cfm" class="inline-block overflow-hidden">
           <img src="./assets/images/martin-bennie-4AdZPQd-v3k-unsplash.jpg" alt="Additional Image"
-            class="mx-auto w-full h-auto rounded-md animate-zoomInOut duration-5 ease-in-out infinite " />
+            class="mx-auto w-full h-auto rounded-md custom-karen overflow-hidden" />
         </a>
       </div>
       <div class="bg-white p-4 shadow-md rounded-md text-center">
@@ -171,9 +175,9 @@
         <p class="text-gray-700">
           Click image to learn more about keeping bees in Minnesota!
         </p>
-        <a href="https://mnbeekeepers.com/">
-          <img src="./assets/images/bianca-ackermann-ys-sZZkdT1s-unsplash.jpg" alt="Additional Image"
-            class="mx-auto w-full h-auto rounded-md animate-zoomInOut duration-5 ease-in-out infinite " />
+        <a href="https://mnbeekeepers.com/" class="inline-block overflow-hidden">
+          <img src="./assets/images/bianca-ackermann-ys-sZZkdT1s-unsplash.jpg"  alt="Additional Image"
+            class="mx-auto w-full h-auto rounded-md custom-karen" />
         </a>
       </div>
     </div>
