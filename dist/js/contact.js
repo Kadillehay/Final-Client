@@ -1,4 +1,4 @@
-document.getElementById("contact-form").addEventListener("submit", function (e) {
+document.getElementById("contact-form").addEventListener("click", function (e) {
     e.preventDefault();
 
     const name = document.getElementById("name").value;
