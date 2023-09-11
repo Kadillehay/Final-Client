@@ -1,4 +1,6 @@
-document.getElementById("contact-form").addEventListener("click", function (e) {
+document
+.querySelector('button[type="submit"]')
+.addEventListener("submit", function (e) {
     e.preventDefault();
 
     const name = document.getElementById("name").value;
@@ -29,3 +31,4 @@ document.getElementById("contact-form").addEventListener("click", function (e) {
             console.error(error);
         });
 });
+console.log("what was my mistake");

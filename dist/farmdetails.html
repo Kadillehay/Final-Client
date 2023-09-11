@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon.io/favicon-32x32.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration - Farming & Agriculture</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .bg-banner {
+            background-image: url('./assets/images/ann-8kkK7wFJCK8-unsplash.jpg');
+            background-repeat: repeat-x;
+            background-color: #fff;
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+    <script src="./js/farmdetails.js" defer>
+
+    </script>
+</head>
+
+<body class="bg-green-100">
+    <div class="bg-banner py-40">
+        <div class="container mx-auto text-center">
+            <p class="text-white text-lg">Welcome to Arrowhead Farm Community</p>
+        </div>
+    </div>
+    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+        <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md" style="margin-top: -38rem;">
+            <a href="./index.html" class="text-green-500 hover:underline mb-2 inline-block">&larr; Back to Landing
+                Page</a>
+            <h1 class="text-2xl font-semibold mb-6">Farm Details</h1>
+            <div>
+                <h2>Meat Products</h2>
+                <input type="checkbox" id="beefCheckbox">
+                <label for="beefCheckbox">Beef</label>
+                <div class="additional-options hidden">
+                    <label for="seasonAvailable">Season Available:</label>
+                    <select id="seasonAvailable">
+                        <option value="fall">Fall</option>
+                        <option value="winter">Winter</option>
+                        <option value="spring">Spring</option>
+                        <option value="summer">Summer</option>
+                        <option value="all">All</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
