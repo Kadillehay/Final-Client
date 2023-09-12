@@ -2,7 +2,7 @@
 
 // Function to fetch contact messages
 function fetchContactMessages() {
-    fetch("http://localhost:8080/contact-messages") // Replace with the actual endpoint
+    fetch("http://localhost:8080/admin") // Replace with the actual endpoint
       .then(response => response.json())
       .then(data => {
         // Populate the Contact Messages section with data
