@@ -1,4 +1,4 @@
-
+console.log("beef");
 document.addEventListener("DOMContentLoaded", function () {
     const beefCheckbox = document.getElementById("beefCheckbox");
     const seasonAvailable = document.getElementById("seasonAvailable");

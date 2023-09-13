@@ -1,0 +1,47 @@
+// Function to handle form submission
+function submitForm(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+  
+    // Get form input values
+    const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
+    const emailAddress = document.getElementById("emailAddress").value;
+    const password = document.getElementById("password").value;
+    const farmName = document.getElementById("farmName").value;
+    
+    // Create an object with the form data
+    const formData = {
+      firstName: firstName,
+      lastName: lastName,
+      emailAddress: emailAddress,
+      farmName: farmName
+    };
+  console.log("something");
+    // Make a POST request to the /register endpoint
+    fetch("http://localhost:8080/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(response => {
+      if (response.ok) {
+        // Registration was successful, you can redirect to a success page or do something else
+        alert("Registration successful!");
+        window.location.href = "./farmdetails.html"; // Redirect to a success page
+      } else {
+        // Registration failed, you can display an error message
+        alert("Registration failed. Please try again.");
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again later.");
+    });
+  }
+  
+  // Attach a submit event listener to the form
+  const registrationForm = document.getElementById("registrationForm");
+  registrationForm.addEventListener("submit", submitForm);
+  
