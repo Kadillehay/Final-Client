@@ -1,15 +1,17 @@
 console.log("beef");
-document.addEventListener("DOMContentLoaded", function () {
+
     const beefCheckbox = document.getElementById("beefCheckbox");
     const seasonAvailable = document.getElementById("seasonAvailable");
-
+    const additionalOptions = document.querySelector(".additional-options")
+    beefCheckbox.checked = false;
     beefCheckbox.addEventListener("change", function () {
+        console.log(beefCheckbox.checked); 
         if (beefCheckbox.checked) {
 
-            seasonAvailable.classList.remove("hidden");
+            additionalOptions.classList.remove("hidden");
         } else {
 
-            seasonAvailable.classList.add("hidden");
+            additionalOptions.classList.add("hidden");
         }
     });
-});
+

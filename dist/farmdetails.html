@@ -29,24 +29,71 @@
     </div>
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
         <!--changed style= "margin-top:-36 rem;,to postition: fixed; top 0;"-->
-        <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-lg" style="margin-top: -36rem;">
+        <div class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-3xl text-center" style="margin-top: -45rem;">
             <a href="./index.html" class="text-green-500 hover:underline mb-2 inline-block">&larr; Back to Landing
                 Page</a>
             <h1 class="text-2xl font-semibold mb-6">Please enter the details of your farm</h1>
-            <div>
-                <h2>Meat Products</h2>
-                <input type="checkbox" id="beefCheckbox">
-                <label for="beefCheckbox">Beef</label>
-                <div class="additional-options hidden">
-                    <label for="seasonAvailable">Season Available:</label>
-                    <select id="seasonAvailable">
-                        <option value="fall">Fall</option>
-                        <option value="winter">Winter</option>
-                        <option value="spring">Spring</option>
-                        <option value="summer">Summer</option>
-                        <option value="all">All</option>
-                    </select>
+            <div class="flex">
+                <div class="w-1/4 p-2 mr-4 border border-gray-300 rounded-lg">
+                    <!-- Meat Products -->
+                    <h2 class="text-lg font-semibold mb-2">Meat Products</h2>
+                    <div class="text-left pl-4">
+                        <input type="checkbox" id="beefCheckbox">
+                        <label for="beefCheckbox">Beef</label><br>
+                        <input type="checkbox" id="porkCheckbox">
+                        <label for="porkCheckbox">Pork</label><br>
+                        <input type="checkbox" id="poultryCheckbox">
+                        <label for="poultryCheckbox">Poultry</label><br>
+                        <input type="checkbox" id="muttonCheckbox">
+                        <label for="muttonCheckbox">Mutton</label><br>
+                    </div>
                 </div>
-              
+                <div class="w-1/4 p-2 mr-4 border border-gray-300 rounded-lg">
+                    <!-- Vegetable Products -->
+                    <h2 class="text-lg font-semibold mb-2">Vegetables</h2>
+                    <div class="text-left pl-4">
+                    <input type="checkbox" id="tomatoCheckbox">
+                    <label for="tomatoCheckbox">Tomatoes</label><br>
+                    <input type="checkbox" id="carrotCheckbox">
+                    <label for="carrotCheckbox">Carrots</label><br>
+                    <input type="checkbox" id="broccoliCheckbox">
+                    <label for="broccoliCheckbox">Broccoli</label><br>
+                    <input type="checkbox" id="cornCheckbox">
+                    <label for="cornCheckbox">Corn</label><br>
+                </div>
+                </div>
+
+                <div class="w-1/4 p-2 mr-4 border border-gray-300 rounded-lg">
+                    <!-- Fruit Products -->
+                    <h2 class="text-lg font-semibold mb-2">Fruits</h2>
+                    <div class="text-left pl-4">
+                    <input type="checkbox" id="blueberryCheckbox">
+                    <label for="blueberryCheckbox">Blueberries</label><br>
+                    <input type="checkbox" id="strawberryCheckbox">
+                    <label for="strawberryCheckbox">Strawberries</label><br>
+                    <input type="checkbox" id="appleCheckbox">
+                    <label for="appleCheckbox">Apples</label><br>
+                    <input type="checkbox" id="pearCheckbox">
+                    <label for="pearCheckbox">Pears</label><br>
+                </div>
+                    <!-- Checkbox and additional options for fruit -->
+                </div>
+                <div class="w-1/4 p-2 border border-gray-300 rounded-lg">
+                    <!-- Dairy Products -->
+                    <h2 class="text-lg font-semibold mb-2">Dairy Products</h2>
+                    <div class="text-left pl-4 pb-2">
+                    <input type="checkbox" id="eggCheckbox">
+                    <label for="eggCheckbox">Eggs</label><br>
+                    <input type="checkbox" id="milkCheckbox">
+                    <label for="milkCheckbox">Milk</label><br>
+                    <input type="checkbox" id="creamCheckbox">
+                    <label for="creamCheckbox">Cream</label><br>
+                    <input type="checkbox" id="butterCheckbox">
+                    <label for="butterCheckbox">Butter</label><br>
+                </div>
+                    <!-- Checkbox and additional options for dairy -->
+                </div>
             </div>
+
+
 </body>
