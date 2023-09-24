@@ -33,18 +33,21 @@
             <a href="./index.html" class="text-green-500 hover:underline mb-2 inline-block">&larr; Back to Landing
                 Page</a>
             <h1 class="text-2xl font-semibold mb-6">Please enter the details of your farm</h1>
+            <form  id="send-details" method="POST">
+
+            
             <div class="flex">
                 <div class="w-1/4 p-2 mr-4 border border-gray-300 rounded-lg">
                     <!-- Meat Products -->
                     <h2 class="text-lg font-semibold mb-2">Meat Products</h2>
                     <div class="text-left pl-4">
-                        <input type="checkbox" id="beefCheckbox">
+                        <input type="checkbox" id="beefCheckbox" name="beef">
                         <label for="beefCheckbox">Beef</label><br>
-                        <input type="checkbox" id="porkCheckbox">
+                        <input type="checkbox" id="porkCheckbox" name="pork">
                         <label for="porkCheckbox">Pork</label><br>
-                        <input type="checkbox" id="poultryCheckbox">
+                        <input type="checkbox" id="poultryCheckbox"  name="poultry">
                         <label for="poultryCheckbox">Poultry</label><br>
-                        <input type="checkbox" id="muttonCheckbox">
+                        <input type="checkbox" id="muttonCheckbox" name="mutton">
                         <label for="muttonCheckbox">Mutton</label><br>
                     </div>
                 </div>
@@ -52,13 +55,13 @@
                     <!-- Vegetable Products -->
                     <h2 class="text-lg font-semibold mb-2">Vegetables</h2>
                     <div class="text-left pl-4">
-                    <input type="checkbox" id="tomatoCheckbox">
+                    <input type="checkbox" id="tomatoCheckbox"  name="tomato">
                     <label for="tomatoCheckbox">Tomatoes</label><br>
-                    <input type="checkbox" id="carrotCheckbox">
+                    <input type="checkbox" id="carrotCheckbox" name="carrot">
                     <label for="carrotCheckbox">Carrots</label><br>
-                    <input type="checkbox" id="broccoliCheckbox">
+                    <input type="checkbox" id="broccoliCheckbox" name="broccoli">
                     <label for="broccoliCheckbox">Broccoli</label><br>
-                    <input type="checkbox" id="cornCheckbox">
+                    <input type="checkbox" id="cornCheckbox" name="corn">
                     <label for="cornCheckbox">Corn</label><br>
                 </div>
                 </div>
@@ -67,33 +70,34 @@
                     <!-- Fruit Products -->
                     <h2 class="text-lg font-semibold mb-2">Fruits</h2>
                     <div class="text-left pl-4">
-                    <input type="checkbox" id="blueberryCheckbox">
+                    <input type="checkbox" id="blueberryCheckbox" name="blueberry">
                     <label for="blueberryCheckbox">Blueberries</label><br>
-                    <input type="checkbox" id="strawberryCheckbox">
+                    <input type="checkbox" id="strawberryCheckbox" name="strawberry">
                     <label for="strawberryCheckbox">Strawberries</label><br>
-                    <input type="checkbox" id="appleCheckbox">
+                    <input type="checkbox" id="appleCheckbox" name="apple">
                     <label for="appleCheckbox">Apples</label><br>
-                    <input type="checkbox" id="pearCheckbox">
+                    <input type="checkbox" id="pearCheckbox" name="pear">
                     <label for="pearCheckbox">Pears</label><br>
                 </div>
-                    <!-- Checkbox and additional options for fruit -->
+         
                 </div>
                 <div class="w-1/4 p-2 border border-gray-300 rounded-lg">
                     <!-- Dairy Products -->
                     <h2 class="text-lg font-semibold mb-2">Dairy Products</h2>
                     <div class="text-left pl-4 pb-2">
-                    <input type="checkbox" id="eggCheckbox">
+                    <input type="checkbox" id="eggCheckbox" name="egg">
                     <label for="eggCheckbox">Eggs</label><br>
-                    <input type="checkbox" id="milkCheckbox">
+                    <input type="checkbox" id="milkCheckbox" name="milk">
                     <label for="milkCheckbox">Milk</label><br>
-                    <input type="checkbox" id="creamCheckbox">
+                    <input type="checkbox" id="creamCheckbox" name="cream">
                     <label for="creamCheckbox">Cream</label><br>
-                    <input type="checkbox" id="butterCheckbox">
+                    <input type="checkbox" id="butterCheckbox" name="butter">
                     <label for="butterCheckbox">Butter</label><br>
                 </div>
-                    <!-- Checkbox and additional options for dairy -->
+               
                 </div>
             </div>
-
+            <button type="submit" id="submit">Submit</button>
+        </form>
 
 </body>

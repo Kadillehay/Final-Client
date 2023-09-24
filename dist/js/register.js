@@ -17,8 +17,7 @@ function submitForm(event) {
       farmName: farmName
     };
   console.log("something");
-    // Make a POST request to the /register endpoint
-    fetch("http://localhost:8080/register", {
+   fetch("http://localhost:8080/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -27,11 +26,11 @@ function submitForm(event) {
     })
     .then(response => {
       if (response.ok) {
-        // Registration was successful, you can redirect to a success page or do something else
+
         alert("Registration successful!");
-        window.location.href = "./farmdetails.html"; // Redirect to a success page
+        window.location.href = "./farmdetails.html"; 
       } else {
-        // Registration failed, you can display an error message
+   
         alert("Registration failed. Please try again.");
       }
     })
@@ -41,7 +40,6 @@ function submitForm(event) {
     });
   }
   
-  // Attach a submit event listener to the form
   const registrationForm = document.getElementById("registrationForm");
   registrationForm.addEventListener("submit", submitForm);
   
