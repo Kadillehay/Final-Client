@@ -1,31 +1,38 @@
-// Function to handle form submission
-function submitForm(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
+let submitted = false
+
+document.querySelector('button[type="submit"]').
+addEventListener("click", function submitForm(e) {
+    e.preventDefault(); 
   
-    // Get form input values
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
     const emailAddress = document.getElementById("emailAddress").value;
     const password = document.getElementById("password").value;
     const farmName = document.getElementById("farmName").value;
-    
-    // Create an object with the form data
+   
     const formData = {
       firstName: firstName,
       lastName: lastName,
       emailAddress: emailAddress,
       farmName: farmName
     };
-  console.log("something");
+    console.log(formData);
+    if (firstName == "" && lastName == "" && emailAddress == "" && password == "" && farmName == "") {
    fetch("http://localhost:8080/register", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
-      },
+        "Content-Type": "application/json",
+   },
       body: JSON.stringify(formData)
-    })
-    .then(response => {
-      if (response.ok) {
+  })
+      .then((data) => {
+        submitted = true;
+        if (data){
+          document.getElementById("firstName").value = "";
+          document.getElementById("lastName").value = "";
+          document.getElementById("emailAddress").value = "";
+          document.getElementById("password").value = "";
+          document.getElementById("farmName").value = "";
 
         alert("Registration successful!");
         window.location.href = "./farmdetails.html"; 
@@ -38,8 +45,16 @@ function submitForm(event) {
       console.error("Error:", error);
       alert("An error occurred. Please try again later.");
     });
+  }else {
+    if (!submitted) {
+    document.getElementById("firstName").placeholder = "Required";
+    document.getElementById("lastName").placeholder = "Required";
+    document.getElementById("emailAddress").placeholder = "Required";
+    document.getElementById("password").placeholder = "Required";
+    document.getElementById("farmName").placeholder = "Required";
+    }
   }
-  
-  const registrationForm = document.getElementById("registrationForm");
-  registrationForm.addEventListener("submit", submitForm);
+});
+const registrationForm = document.getElementById("registrationForm");
+registrationForm.addEventListener("submit", submitForm);
   
