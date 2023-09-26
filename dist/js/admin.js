@@ -1,3 +1,22 @@
+// Grab userId from localstorage
+const userId = JSON.parse(localStorage.getItem("user"))[0];
+const farmName = JSON.parse(localStorage.getItem("user"))[1];
+if (userId) {
+  window.addEventListener("load", () => {
+    fetch(`http://localhost:8080/get-user-farm-details`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: userId,
+    })
+      .then((res) => res.json())
+      .then(
+        (data) =>
+          (document.querySelector("#farm_name").textContent = data.farmName)
+      );
+  });
+}
 let showAll = false;
 let globalData;
 let contactMessagesTable;
@@ -71,4 +90,4 @@ function showAllFunction(globalData) {
 document
   .getElementById("show-all-button")
   .addEventListener("click", () => showAllFunction(globalData));
-window.addEventListener("DOMContentLoaded", fetchContactMessages);
+// window.addEventListener("DOMContentLoaded", fetchContactMessages);

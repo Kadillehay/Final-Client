@@ -29,8 +29,8 @@ document
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
-         
         })
+          .then((res) => res.json())
           .then((data) => {
             submitted = true;
             if (data) {
@@ -41,7 +41,7 @@ document
               document.getElementById("farmName").value = "";
               alert("Registration successful!");
               window.location.href = "./farmdetails.html";
-              
+              localStorage.setItem("user", JSON.stringify(data));
             } else {
               alert("Registration failed. Please try again.");
             }
