@@ -1,3 +1,5 @@
+
+
 // Grab userId from localstorage
 const userId = JSON.parse(localStorage.getItem("user"))[0];
 const farmName = JSON.parse(localStorage.getItem("user"))[1];
@@ -12,10 +14,23 @@ if (userId) {
     })
       .then((res) => res.json())
       .then(
-        (data) =>
-          (document.querySelector("#farm_name").textContent = data.farmName)
+        (data) => {
+          console.log(data)
+          (document.querySelector("#farm_name").textContent = data.farmName) }
       );
+      
   });
+  window.addEventListener("DOMContentLoaded",() => {
+    fetch('https://localhost:8080/get-user', {
+      method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: userId,
+
+    }
+    ).then((response) => response.json()).then(userData => console.log(userData)) 
+  })
 }
 let showAll = false;
 let globalData;
