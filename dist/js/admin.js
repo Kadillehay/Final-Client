@@ -14,14 +14,16 @@ if (userId) {
     })
       .then((res) => res.json())
       .then(
-        (data) => {
+        (data) =>{
+          (document.querySelector("#farm_name").textContent = data.farmName) 
           console.log(data)
-          (document.querySelector("#farm_name").textContent = data.farmName) }
+        }
+       
       );
       
   });
   window.addEventListener("DOMContentLoaded",() => {
-    fetch('https://localhost:8080/get-user', {
+    fetch('http://localhost:8080/get-user', {
       method: "POST",
     headers: {
       "Content-Type": "application/json",
