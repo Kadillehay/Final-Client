@@ -40,8 +40,12 @@ document
               document.getElementById("password").value = "";
               document.getElementById("farmName").value = "";
               alert("Registration successful!");
-              window.location.href = "./farmdetails.html";
               localStorage.setItem("user", JSON.stringify(data));
+              localStorage.setItem(
+                "authUser",
+                JSON.stringify({ ...data, auth: true })
+              );
+              window.location.href = "./farmdetails.html";
             } else {
               alert("Registration failed. Please try again.");
             }
