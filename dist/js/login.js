@@ -1,6 +1,5 @@
 const emailAdress = document.querySelector("#emailAddress");
 const password = document.querySelector("#passwordInput");
-const test = document.querySelector("#test");
 const button = document.querySelector('button[type="submit"]');
 
 button.addEventListener("click", (e) => {
@@ -28,7 +27,7 @@ const handleSubmit = (credentials) => {
         window.location.href = "./user-dashboard.html";
       }
     })
-    .catch((err) => console.log(err));
+    .catch((err) => new Error('Error thrown'));
 };
 
 handleSubmit(formData);
