@@ -8,7 +8,6 @@ button.addEventListener("click", (e) => {
     emailAddress: emailAdress.value,
     password: password.value,
   };
-  console.log(formData);
   handleSubmit(formData);
 });
 const handleSubmit = (credentials) => {
@@ -27,7 +26,7 @@ const handleSubmit = (credentials) => {
         window.location.href = "./user-dashboard.html";
       }
     })
-    .catch((err) => new Error('Error thrown'));
+    .catch((err) => new Error("Error thrown"));
 };
 
 handleSubmit(formData);

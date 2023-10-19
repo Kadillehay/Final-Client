@@ -1,4 +1,5 @@
 let submitted = false;
+
 document
   .querySelector('button[type="submit"]')
   .addEventListener("click", function submitForm(e) {
@@ -40,10 +41,17 @@ document
               document.getElementById("password").value = "";
               document.getElementById("farmName").value = "";
               alert("Registration successful!");
-              localStorage.setItem("user", JSON.stringify(data));
+              const myDetails = data?.id;
+              console.log(myDetails);
+              localStorage.setItem(
+                "user",
+                JSON.stringify([myDetails?.id, myDetails?.farmName])
+              );
+
               localStorage.setItem(
                 "authUser",
-                JSON.stringify({ ...data, auth: true })
+
+                JSON.stringify({ ...myDetails, auth: true })
               );
               window.location.href = "./farmdetails.html";
             } else {
