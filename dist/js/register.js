@@ -42,7 +42,6 @@ document
               document.getElementById("farmName").value = "";
               alert("Registration successful!");
               const myDetails = data?.id;
-              console.log(myDetails);
               localStorage.setItem(
                 "user",
                 JSON.stringify([myDetails?.id, myDetails?.farmName])

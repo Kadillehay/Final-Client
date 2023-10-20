@@ -1,5 +1,6 @@
 const emailAdress = document.querySelector("#emailAddress");
 const password = document.querySelector("#passwordInput");
+const farmName = document.querySelector("#farmName");
 const button = document.querySelector('button[type="submit"]');
 
 button.addEventListener("click", (e) => {
@@ -7,6 +8,7 @@ button.addEventListener("click", (e) => {
   const formData = {
     emailAddress: emailAdress.value,
     password: password.value,
+    farmName: farmName.value,
   };
   handleSubmit(formData);
 });
@@ -23,6 +25,7 @@ const handleSubmit = (credentials) => {
       if (user) {
         const authUser = { ...user, auth: true };
         localStorage.setItem("authUser", JSON.stringify(authUser));
+        localStorage.setItem("user", JSON.stringify([null, farmName.value]));
         window.location.href = "./user-dashboard.html";
       }
     })
