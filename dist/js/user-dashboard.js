@@ -102,7 +102,7 @@ const fetchDetails = () => {
               break;
             case "Egg":
             case "Milk":
-            case "Creams":
+            case "Cream":
             case "Butter":
               const dairySpan = document.createElement("span");
               dairySpan.textContent = `${foodName}`;
