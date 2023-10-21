@@ -4,7 +4,10 @@ const farmName = document.querySelector("#farmName");
 const farmEmail = document.querySelector("#farmEmail");
 const phoneNumber = document.querySelector("#phoneNumber");
 const viewFoodsBtn = document.querySelector("#viewFoodsBtn");
-const foodList = document.querySelector("#food-list");
+const meatFoods = document.querySelector("#meatFoods");
+const vegFoods = document.querySelector("#vegFoods");
+const fruitFoods = document.querySelector("#fruitFoods");
+const dairyFoods = document.querySelector("#dairyFoods");
 // Fetching the Auth from localStorage(my cookies)
 if (!userAuth.auth) {
   window.location.href = "/dist/login.html";
@@ -25,18 +28,28 @@ const fetchDetails = () => {
   fetch("http://localhost:8080/get-details")
     .then((response) => response.json())
     .then((data) => {
-      const foods = new Map();
       let ourFarm = null;
       data.forEach((farm) => {
         if (farm.farmName === userAuth.farmName) {
           ourFarm = farm;
         }
       });
-      for (let food in ourFarm) {
-        if (ourFarm[food] && typeof ourFarm[food] === "boolean") {
-          const li = document.createElement("li");
-          li.textContent = `- ${food.toLocaleUpperCase()}`;
-          foodList.append(li);
+      meatFoods.textContent='';
+      vegFoods.textContent='';
+      fruitFoods.textContent='';
+      dairyFoods.textContent='';
+      for (let category in ourFarm) {
+        if (ourFarm[category] && typeof ourFarm[category] === "boolean") {
+          const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
+         if(category === "meat"){
+          meatFoods.textContent+= `${categoryName},`;
+         }else if (category==="vegetable"){
+          vegFoods.textContent += `${categoryName},`;
+         }else if (category === "fruit"){
+          fruitFoods.textContent += `${categoryName},`;
+         }else if (category === "dairy"){
+          dairyFoods.textContent += `${categoryName},`;
+         }
         }
       }
     });
