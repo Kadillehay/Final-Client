@@ -34,23 +34,96 @@ const fetchDetails = () => {
           ourFarm = farm;
         }
       });
-      meatFoods.textContent='';
-      vegFoods.textContent='';
-      fruitFoods.textContent='';
-      dairyFoods.textContent='';
-      for (let category in ourFarm) {
-        if (ourFarm[category] && typeof ourFarm[category] === "boolean") {
-          const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
-         if(category === "meat"){
-          meatFoods.textContent+= `${categoryName},`;
-         }else if (category==="vegetable"){
-          vegFoods.textContent += `${categoryName},`;
-         }else if (category === "fruit"){
-          fruitFoods.textContent += `${categoryName},`;
-         }else if (category === "dairy"){
-          dairyFoods.textContent += `${categoryName},`;
-         }
+      meatFoods.textContent = '';
+      vegFoods.textContent = '';
+      fruitFoods.textContent = '';
+      dairyFoods.textContent = '';
+
+      for (let food in ourFarm) {
+        if (ourFarm[food] && typeof ourFarm[food] === "boolean") {
+          const foodName = food.charAt(0).toUpperCase() + food.slice(1);
+          console.log(foodName)
+          switch (foodName) {
+            case "Beef":
+            case "Pork":
+            case "Poultry":
+            case "Mutton":
+              if (document.querySelector(`.${foodName}`) === null) {
+                const span = document.createElement("span");
+                span.classList.add = foodName
+                span.textContent = `${foodName}`;
+                span.style.border = "1px solid black";
+                span.style.padding = "4px 6px";
+                span.style.margin = "2px";
+                span.style.fontSize = "12px";
+                span.style.borderRadius = "12px";
+                meatFoods.append(span);
+                break;
+              }
+
+            case "Tomato":
+            case "Carrot":
+            case "Broccoli":
+            case "Corn":
+              const meatSpan = document.createElement("span");
+              meatSpan.textContent = `${foodName}`;
+              meatSpan.style.border = "1px solid black";
+              meatSpan.style.padding = "4px 6px";
+              meatSpan.style.margin = "2px";
+              meatSpan.style.fontSize = "12px";
+              meatSpan.style.borderRadius = "12px";
+              vegFoods.append(meatSpan);
+              break;
+            case "Tomato":
+            case "Carrot":
+            case "Broccoli":
+            case "Corn":
+              const vegSpan = document.createElement("span");
+              vegSpan.textContent = `${foodName}`;
+              vegSpan.style.border = "1px solid black";
+              vegSpan.style.padding = "4px 6px";
+              vegSpan.style.margin = "2px";
+              vegSpan.style.fontSize = "12px";
+              vegSpan.style.borderRadius = "12px";
+              vegFoods.append(vegSpan);
+              break;
+            case "Blueberry":
+            case "Strawberry":
+            case "Apple":
+            case "Pear":
+              const fruitSpan = document.createElement("span");
+              fruitSpan.textContent = `${foodName}`;
+              fruitSpan.style.border = "1px solid black";
+              fruitSpan.style.padding = "4px 6px";
+              fruitSpan.style.margin = "2px";
+              fruitSpan.style.fontSize = "12px";
+              fruitSpan.style.borderRadius = "12px";
+              fruitFoods.append(fruitSpan);
+              break;
+            case "Egg":
+            case "Milk":
+            case "Creams":
+            case "Butter":
+              const dairySpan = document.createElement("span");
+              dairySpan.textContent = `${foodName}`;
+              dairySpan.style.border = "1px solid black";
+              dairySpan.style.padding = "4px 6px";
+              dairySpan.style.margin = "2px";
+              dairySpan.style.fontSize = "12px";
+              dairySpan.style.borderRadius = "12px";
+              dairyFoods.append(dairySpan);
+              console.log(foodName)
+              break;
+            default:
+              console.log("no food available");
+          }
+
+
+
         }
+
+
+
       }
     });
 };
