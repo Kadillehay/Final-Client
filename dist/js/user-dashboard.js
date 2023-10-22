@@ -55,7 +55,7 @@ const fetchDetails = () => {
                 span.style.border = "1px solid black";
                 span.style.padding = "4px 6px";
                 span.style.margin = "2px";
-                span.style.fontSize = "12px";
+                span.style.fontSize = "14px";
                 span.style.borderRadius = "12px";
                 meatFoods.append(span);
                 break;
@@ -70,7 +70,7 @@ const fetchDetails = () => {
               meatSpan.style.border = "1px solid black";
               meatSpan.style.padding = "4px 6px";
               meatSpan.style.margin = "2px";
-              meatSpan.style.fontSize = "12px";
+              meatSpan.style.fontSize = "14px";
               meatSpan.style.borderRadius = "12px";
               vegFoods.append(meatSpan);
               break;
@@ -83,7 +83,7 @@ const fetchDetails = () => {
               vegSpan.style.border = "1px solid black";
               vegSpan.style.padding = "4px 6px";
               vegSpan.style.margin = "2px";
-              vegSpan.style.fontSize = "12px";
+              vegSpan.style.fontSize = "14px";
               vegSpan.style.borderRadius = "12px";
               vegFoods.append(vegSpan);
               break;
@@ -96,7 +96,7 @@ const fetchDetails = () => {
               fruitSpan.style.border = "1px solid black";
               fruitSpan.style.padding = "4px 6px";
               fruitSpan.style.margin = "2px";
-              fruitSpan.style.fontSize = "12px";
+              fruitSpan.style.fontSize = "14px";
               fruitSpan.style.borderRadius = "12px";
               fruitFoods.append(fruitSpan);
               break;
@@ -109,7 +109,7 @@ const fetchDetails = () => {
               dairySpan.style.border = "1px solid black";
               dairySpan.style.padding = "4px 6px";
               dairySpan.style.margin = "2px";
-              dairySpan.style.fontSize = "12px";
+              dairySpan.style.fontSize = "14px";
               dairySpan.style.borderRadius = "12px";
               dairyFoods.append(dairySpan);
               console.log(foodName)
