@@ -1,24 +1,34 @@
 //UPDATE USER STUFF HERE:
 document.getElementById("updateButton").addEventListener("click", function updateUserInfo(e) {
   e.preventDefault();
-  const updatedFarmName = document.getElementById("updatedFarmName").value;
-  const updatedEmail = document.getElementById("updatedEmail").value;
-  const updatedPhoneNumber = document.getElementById("updatedPhoneNumber").value;
+  const updatedFarmName = document.getElementById("farm-name-label").value;
+  const updatedEmail = document.getElementById("farmEmail").value;
+  const updatedPassword = document.getElementById("farmPassword").value;
+  const updatedPhoneNumber = document.getElementById("phoneNumber").value;
 
-  if (updatedFarmName && updatedEmail && updatedPhoneNumber) {
-    const updatedData = {
-      farmName: updatedFarmName,
-      email: updatedEmail,
-      phoneNumber: updatedPhoneNumber,
-    };
+  if (updatedFarmName && updatedEmail && updatedPassword && updatedPhoneNumber) {
+    const updatedData = {};
+    if (updatedFarmName) {
+      farmName: updatedFarmName;
+    }
+    if (updatedEmail) {
+      email: updatedEmail;
+    }
+    if (updatedPhoneNumber) {
+      phoneNumber: updatedPhoneNumber;
+    }
+    if (updatedPassword) {
+      password: updatedPassword;
+    }
 
-    fetch("http://localhost:8080/update-user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedData),
-    })
+    if (Object.keys(updatedData).length > 0) {
+      fetch("http://localhost:8080/user-dashboard", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      })
       .then((res) => res.json())
       .then((data) => {
         if (data) {
@@ -28,12 +38,14 @@ document.getElementById("updateButton").addEventListener("click", function updat
           alert("Update failed. Please try again.");
         }
       })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("An error occurred. Please try again later.");
-      });
-  } else {
-    alert("Please fill in all required fields.");
+      console.log(data)
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("An error occurred. Please try again later.");
+        });
+    } else {
+      alert("no field s to update");
+    }
   }
 });
 
