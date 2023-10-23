@@ -1,3 +1,44 @@
+//UPDATE USER STUFF HERE:
+document.getElementById("updateButton").addEventListener("click", function updateUserInfo(e) {
+  e.preventDefault();
+  const updatedFarmName = document.getElementById("updatedFarmName").value;
+  const updatedEmail = document.getElementById("updatedEmail").value;
+  const updatedPhoneNumber = document.getElementById("updatedPhoneNumber").value;
+
+  if (updatedFarmName && updatedEmail && updatedPhoneNumber) {
+    const updatedData = {
+      farmName: updatedFarmName,
+      email: updatedEmail,
+      phoneNumber: updatedPhoneNumber,
+    };
+
+    fetch("http://localhost:8080/update-user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          alert("Update successful!");
+          // Optionally, update the user's details in the local storage
+        } else {
+          alert("Update failed. Please try again.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again later.");
+      });
+  } else {
+    alert("Please fill in all required fields.");
+  }
+});
+
+
+// ALL UPDATING FOOD STUFF BELOW THIS:
 const userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
 // Selecting html elements
 const farmName = document.querySelector("#farmName");
