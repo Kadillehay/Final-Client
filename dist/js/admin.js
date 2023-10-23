@@ -1,77 +1,6 @@
-
-
-//  Grab userId from localstorage
-// const userId = JSON.parse(localStorage.getItem("user"))[0];
-// const farmName = JSON.parse(localStorage.getItem("user"))[1];
-// if (userId) {
-//   window.addEventListener("load", () => {
-//     fetch(`http://localhost:8080/get-user-farm-details`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: userId,
-//     })
-//       .then((res) => res.json())
-//       .then(
-//         (data) =>{
-//           (document.querySelector("#farm_name").textContent = data.farmName) 
-//           console.log(data)
-//         }
-       
-//       );
-      
-//   });
-//   window.addEventListener("DOMContentLoaded",() => {
-//     fetch('http://localhost:8080/get-user', {
-//       method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: userId,
-
-//     }
-//     ).then((response) => response.json()).then(userData => console.log(userData)) 
-//   })
-// }
-
 const userID = JSON.parse(localStorage.getItem("user"))[0];
 
-if (userID) {
-  window.addEventListener("load", () => {
-    fetch(`http://localhost:8080/get-all-farm-details`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: userID,
-    })
-    .then((res)=> res.json())
-    .then((data) => {
-      const farmTable =document.querySelector("#farm-table");
-      farmTable.innerHTML="";
-    })
-  })
-  window.addEventListener("DOMContentLoaded", ()=> {
-    fetch("http://localhost:8080/get-all-farm-details", {
-      method:"GET",
-    })
-    .then((response) =>response.json())
-    .then((farms)=> {
-      const farmTable = document.querySelector("#farm-table");
-      farmTable.innerHTML="";
-      const recentFarms= farms.slice(0,10);
-      recentFarms.forEach((farm)=> {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-        <td class="px-4 py-2">${farm.name}</td>
-            <td class="px-4 py-2">${farm.location}</td>
-            <td class="px-4 py-2">${farm.contactEmail}</td>
-        `;
-        farmTable.appendChild(row);
-      })
-    })
-  })
+
   const showAllFarmButton = document.getElementById("show-all-farm-button");
   showAllFarmButton.addEventListener("click", ()=> {
     fetch("http://localhost:8080/get-all-farm-details", {
@@ -79,21 +8,22 @@ if (userID) {
     })
     .then((response)=> response.json())
     .then((farms)=> {
+      console.log(farms)
       const farmTable = document.querySelector("#farm-table");
-      farmTable.innerHTML="";
       farms.forEach((farm)=>{
         const row = document.createElement("tr");
         row.innerHTML=`
-        <td class="px-4 py-2">${farm.name}</td>
-        <td class="px-4 py-2">${farm.location}</td>
-        <td class="px-4 py-2">${farm.contactEmail}</td>
+        <td class="px-4 py-2">${farm.farmName}</td>
+        <td class="px-4 py-2">${farm.emailAddress}</td>
+        <td class="px-4 py-2">${farm.firstName}</td>
+        <td class="px-4 py-2">${farm.lastName}</td>
         `;
         farmTable.appendChild(row);
       })
     })
   })
 
-}
+
 
 
 // MESSAGE STUFF
