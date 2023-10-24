@@ -20,7 +20,7 @@ document.getElementById("updateButton").addEventListener("click", function updat
     if (updatedPassword) {
       password: updatedPassword;
     }
-
+console.log(updatedData)
     if (Object.keys(updatedData).length > 0) {
       fetch("http://localhost:8080/user-dashboard", {
         method: "POST",
@@ -36,9 +36,9 @@ document.getElementById("updateButton").addEventListener("click", function updat
           // Optionally, update the user's details in the local storage
         } else {
           alert("Update failed. Please try again.");
+        
         }
       })
-      console.log(data)
         .catch((error) => {
           console.error("Error:", error);
           alert("An error occurred. Please try again later.");
