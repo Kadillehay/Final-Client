@@ -1,7 +1,7 @@
 //UPDATE USER STUFF HERE:
-document.getElementById("updateButton").addEventListener("click", function updateUserInfo(e) {
+document.getElementById("updateButton").addEventListener("click", (e) => {
   e.preventDefault();
-  const updatedFarmName = document.getElementById("farm-name-label").value;
+  const updatedFarmName = document.getElementById("farmName").value;
   const updatedEmail = document.getElementById("farmEmail").value;
   const updatedPassword = document.getElementById("farmPassword").value;
   const updatedPhoneNumber = document.getElementById("phoneNumber").value;
@@ -21,17 +21,18 @@ document.getElementById("updateButton").addEventListener("click", function updat
       password: updatedPassword;
     }
 console.log(updatedData)
-    if (Object.keys(updatedData).length > 0) {
-      fetch("http://localhost:8080/user-dashboard", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
+if (Object.keys(updatedData).length > 0) {
+  fetch("http://localhost:8080/user-dashboard", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedData),
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    if (data) {
+          console.log(data)
           alert("Update successful!");
           // Optionally, update the user's details in the local storage
         } else {
