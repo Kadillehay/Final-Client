@@ -1,3 +1,4 @@
+const userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
 //UPDATE USER STUFF HERE:
 document.getElementById("updateButton").addEventListener("click", (e) => {
   e.preventDefault();
@@ -6,53 +7,57 @@ document.getElementById("updateButton").addEventListener("click", (e) => {
   const updatedPassword = document.getElementById("farmPassword").value;
   const updatedPhoneNumber = document.getElementById("phoneNumber").value;
 
-  if (updatedFarmName && updatedEmail && updatedPassword && updatedPhoneNumber) {
-    const updatedData = {};
-    if (updatedFarmName) {
-      farmName: updatedFarmName;
-    }
-    if (updatedEmail) {
-      email: updatedEmail;
-    }
-    if (updatedPhoneNumber) {
-      phoneNumber: updatedPhoneNumber;
-    }
-    if (updatedPassword) {
-      password: updatedPassword;
-    }
-console.log(updatedData)
-if (Object.keys(updatedData).length > 0) {
-  fetch("http://localhost:8080/user-dashboard", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(updatedData),
-  })
-  .then((res) => res.json())
-  .then((data) => {
-    if (data) {
-          console.log(data)
+  const updatedData = {
+    originalEmail: userAuth.emailAddress,
+    originalPassword: userAuth.password,
+  };
+  if (updatedFarmName) {
+    updatedData["farmName"] = updatedFarmName;
+  }
+  if (updatedEmail) {
+    updatedData["emailAddress"] = updatedEmail;
+  }
+  if (updatedPassword) {
+    updatedData["password"] = updatedPassword;
+  }
+  if (updatedPhoneNumber) {
+    updatedData["phoneNumber"] = updatedPhoneNumber;
+  }
+  console.log(updatedData);
+  if (Object.keys(updatedData).length > 0) {
+    fetch("http://localhost:8080/update-user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          console.log(data);
+          localStorage.setItem(
+            "authUser",
+            JSON.stringify({ ...data, auth: true })
+          );
+          localStorage.setItem(
+            "user",
+            JSON.stringify([data?.id, data?.farmName])
+          );
           alert("Update successful!");
           // Optionally, update the user's details in the local storage
         } else {
           alert("Update failed. Please try again.");
-        
         }
       })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("An error occurred. Please try again later.");
-        });
-    } else {
-      alert("no field s to update");
-    }
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again later.");
+      });
   }
 });
 
-
 // ALL UPDATING FOOD STUFF BELOW THIS:
-const userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
 // Selecting html elements
 const farmName = document.querySelector("#farmName");
 const farmEmail = document.querySelector("#farmEmail");
@@ -88,15 +93,15 @@ const fetchDetails = () => {
           ourFarm = farm;
         }
       });
-      meatFoods.textContent = '';
-      vegFoods.textContent = '';
-      fruitFoods.textContent = '';
-      dairyFoods.textContent = '';
+      meatFoods.textContent = "";
+      vegFoods.textContent = "";
+      fruitFoods.textContent = "";
+      dairyFoods.textContent = "";
 
       for (let food in ourFarm) {
         if (ourFarm[food] && typeof ourFarm[food] === "boolean") {
           const foodName = food.charAt(0).toUpperCase() + food.slice(1);
-          console.log(foodName)
+          console.log(foodName);
           switch (foodName) {
             case "Beef":
             case "Pork":
@@ -104,7 +109,7 @@ const fetchDetails = () => {
             case "Mutton":
               if (document.querySelector(`.${foodName}`) === null) {
                 const span = document.createElement("span");
-                span.classList.add = foodName
+                span.classList.add = foodName;
                 span.textContent = `${foodName}`;
                 span.style.border = "1px solid black";
                 span.style.padding = "4px 6px";
@@ -166,18 +171,12 @@ const fetchDetails = () => {
               dairySpan.style.fontSize = "14px";
               dairySpan.style.borderRadius = "12px";
               dairyFoods.append(dairySpan);
-              console.log(foodName)
+              console.log(foodName);
               break;
             default:
               console.log("no food available");
           }
-
-
-
         }
-
-
-
       }
     });
 };
