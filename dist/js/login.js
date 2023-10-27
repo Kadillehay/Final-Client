@@ -25,7 +25,8 @@ const handleSubmit = (credentials) => {
       if (user) {
         const authUser = { ...user, auth: true };
         localStorage.setItem("authUser", JSON.stringify(authUser));
-        localStorage.setItem("user", JSON.stringify([null, farmName.value]));
+        localStorage.setItem("user", JSON.stringify([farmName?.id, farmName.value]));
+        console.log(user)
         window.location.href = "./user-dashboard.html";
       }
     })

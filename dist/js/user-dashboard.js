@@ -81,6 +81,7 @@ else {
 const logoutBtn = document.getElementById("logout");
 logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("authUser");
+  localStorage.removeItem("user")
   if (!userAuth) window.location.href = "../login.html";
 });
 const fetchDetails = () => {
