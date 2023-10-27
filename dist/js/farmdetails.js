@@ -36,7 +36,7 @@ document.querySelectorAll('input[type="checkbox"]').forEach((input) => {
     sendDetailsObject[name] = value;
   });
 });
-console.log(sendDetailsObject)
+console.log(sendDetailsObject);
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   fetch("http://localhost:8080/send-details", {
@@ -46,6 +46,6 @@ form.addEventListener("submit", (e) => {
     },
     body: JSON.stringify(sendDetailsObject),
   }).then(() => {
-    // window.location.href = "./user-dashboard.html";
+    window.location.href = "./user-dashboard.html";
   });
 });
