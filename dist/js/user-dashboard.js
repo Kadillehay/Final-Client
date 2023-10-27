@@ -108,15 +108,15 @@ const fetchDetails = () => {
             case "Poultry":
             case "Mutton":
               if (document.querySelector(`.${foodName}`) === null) {
-                const span = document.createElement("span");
-                span.classList.add = foodName;
-                span.textContent = `${foodName}`;
-                span.style.border = "1px solid black";
-                span.style.padding = "4px 6px";
-                span.style.margin = "2px";
-                span.style.fontSize = "14px";
-                span.style.borderRadius = "12px";
-                meatFoods.append(span);
+                const meatSpan = document.createElement("span");
+                meatSpan.classList.add = foodName;
+                meatSpan.textContent = `${foodName}`;
+                meatSpan.style.border = "1px solid black";
+                meatSpan.style.padding = "4px 6px";
+                meatSpan.style.margin = "2px";
+                meatSpan.style.fontSize = "14px";
+                meatSpan.style.borderRadius = "12px";
+                meatFoods.append(meatSpan);
                 break;
               }
 
@@ -124,20 +124,8 @@ const fetchDetails = () => {
             case "Carrot":
             case "Broccoli":
             case "Corn":
-              const meatSpan = document.createElement("span");
-              meatSpan.textContent = `${foodName}`;
-              meatSpan.style.border = "1px solid black";
-              meatSpan.style.padding = "4px 6px";
-              meatSpan.style.margin = "2px";
-              meatSpan.style.fontSize = "14px";
-              meatSpan.style.borderRadius = "12px";
-              vegFoods.append(meatSpan);
-              break;
-            case "Tomato":
-            case "Carrot":
-            case "Broccoli":
-            case "Corn":
               const vegSpan = document.createElement("span");
+              vegSpan.classList.add = foodName;
               vegSpan.textContent = `${foodName}`;
               vegSpan.style.border = "1px solid black";
               vegSpan.style.padding = "4px 6px";
@@ -146,11 +134,13 @@ const fetchDetails = () => {
               vegSpan.style.borderRadius = "12px";
               vegFoods.append(vegSpan);
               break;
+
             case "Blueberry":
             case "Strawberry":
             case "Apple":
             case "Pear":
               const fruitSpan = document.createElement("span");
+              fruitSpan.classList.add = foodName;
               fruitSpan.textContent = `${foodName}`;
               fruitSpan.style.border = "1px solid black";
               fruitSpan.style.padding = "4px 6px";
@@ -159,11 +149,13 @@ const fetchDetails = () => {
               fruitSpan.style.borderRadius = "12px";
               fruitFoods.append(fruitSpan);
               break;
+
             case "Egg":
             case "Milk":
             case "Cream":
             case "Butter":
               const dairySpan = document.createElement("span");
+              dairySpan.classList.add = foodName;
               dairySpan.textContent = `${foodName}`;
               dairySpan.style.border = "1px solid black";
               dairySpan.style.padding = "4px 6px";
@@ -171,7 +163,7 @@ const fetchDetails = () => {
               dairySpan.style.fontSize = "14px";
               dairySpan.style.borderRadius = "12px";
               dairyFoods.append(dairySpan);
-              console.log(foodName);
+              // console.log(foodName);
               break;
             default:
               console.log("no food available");
