@@ -31,7 +31,7 @@ const handleSubmit = async (credentials) => {
     if (user) {
       localStorage.setItem("authUser", JSON.stringify({ auth: true }));
       localStorage.setItem("token", JSON.stringify(user));
-      await handleGetFarmerDetails();
+      // await handleGetFarmerDetails();
       window.location.href = "./user-dashboard.html";
     }
   } catch (error) {

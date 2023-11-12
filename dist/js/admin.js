@@ -1,22 +1,26 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const token = JSON.parse(localStorage.getItem("token"));
-  fetch("http://localhost:8080/admin-dashboard", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((res) => res.text())
-    .then((data) => console.log(data));
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//   const token = JSON.parse(localStorage.getItem("token"));
+//   fetch("http://localhost:8080/admin-dashboard", {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${token}`,
+//     },
+//   })
+//     .then((res) => res.text())
+//     .then((data) => console.log(data));
+// });
 
 const userID = JSON.parse(localStorage.getItem("user"))[0];
 
 const showAllFarmButton = document.getElementById("show-all-farm-button");
 showAllFarmButton.addEventListener("click", () => {
-  fetch("http://localhost:8080/get-all-farm-details", {
-    method: "GET",
+  fetch("http://localhost:8080/get-user-farm-details", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userID),
   })
     .then((response) => response.json())
     .then((farms) => {

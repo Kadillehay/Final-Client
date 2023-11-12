@@ -1,6 +1,7 @@
 let userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
 const token = JSON.parse(localStorage.getItem("token"));
 
+if (!token) window.location.href = "./login";
 document.addEventListener("DOMContentLoaded", () => {
   fetch("http://localhost:8080/get-farmer-details", {
     method: "GET",
@@ -94,9 +95,10 @@ else {
   phoneNumber.value = userAuth?.phoneNumber;
 }
 const logoutBtn = document.getElementById("logout");
-logoutBtn.addEventListener("click", () => {
+logoutBtn.addEventListener("click", (e) => {
   localStorage.removeItem("authUser");
   localStorage.removeItem("user");
+  localStorage.removeItem("token");
   if (!userAuth) window.location.href = "../login.html";
 });
 const fetchDetails = () => {
