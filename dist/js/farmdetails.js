@@ -1,9 +1,7 @@
-const foundUser = JSON.parse(localStorage.getItem("user"))[0];
-const farmName = JSON.parse(localStorage.getItem("user"))[1];
 const userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
 let sendDetailsObject = {
-  userId: foundUser,
-  farmName: farmName,
+  userId: userAuth?.userId,
+  farmName: userAuth?.farmName,
 };
 const fetchDetails = () => {
   fetch("http://localhost:8080/get-details")
@@ -36,7 +34,6 @@ document.querySelectorAll('input[type="checkbox"]').forEach((input) => {
     sendDetailsObject[name] = value;
   });
 });
-console.log(sendDetailsObject);
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   fetch("http://localhost:8080/send-details", {

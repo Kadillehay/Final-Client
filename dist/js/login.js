@@ -1,3 +1,5 @@
+const token = JSON.parse(localStorage.getItem("token")) || "";
+let userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
 const emailAdress = document.querySelector("#emailAddress");
 const password = document.querySelector("#passwordInput");
 const farmName = document.querySelector("#farmName");
@@ -12,29 +14,37 @@ button.addEventListener("click", (e) => {
   };
   handleSubmit(formData);
 });
-const handleSubmit = (credentials) => {
-  fetch("http://localhost:8080/login", {
-    method: "POST",
+const handleSubmit = async (credentials) => {
+  try {
+    const res = await fetch("http://localhost:8080/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(credentials),
+    });
+    const user = await res.text();
+    if (user) {
+      localStorage.setItem("authUser", JSON.stringify({ auth: true }));
+      localStorage.setItem("token", JSON.stringify(user));
+      await handleGetFarmerDetails();
+      window.location.href = "./user-dashboard.html";
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const handleGetFarmerDetails = async () => {
+  const response = await fetch("http://localhost:8080/get-farmer-details", {
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(credentials),
-  })
-    .then((res) => res.json())
-    .then((user) => {
-      if (user) {
-        const authUser = { ...user, auth: true };
-        localStorage.setItem("authUser", JSON.stringify(authUser));
-
-        localStorage.setItem(
-          "user",
-          JSON.stringify([user?.id, farmName.value])
-        );
-        console.log(user);
-        window.location.href = "./user-dashboard.html";
-      }
-    })
-    .catch((err) => new Error("Error thrown"));
+  });
+  const user = await response.json();
+  localStorage.setItem("authUser", JSON.stringify({ ...userAuth, ...user }));
 };
 
 handleSubmit(formData);

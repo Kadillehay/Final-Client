@@ -1,4 +1,19 @@
-const userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
+let userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
+const token = JSON.parse(localStorage.getItem("token"));
+
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:8080/get-farmer-details", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((user) =>
+      localStorage.setItem("authUser", JSON.stringify({ ...userAuth, ...user }))
+    );
+});
 //UPDATE USER STUFF HERE:
 document.getElementById("updateButton").addEventListener("click", (e) => {
   e.preventDefault();
@@ -81,7 +96,7 @@ else {
 const logoutBtn = document.getElementById("logout");
 logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("authUser");
-  localStorage.removeItem("user")
+  localStorage.removeItem("user");
   if (!userAuth) window.location.href = "../login.html";
 });
 const fetchDetails = () => {

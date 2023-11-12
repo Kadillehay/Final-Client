@@ -1,30 +1,39 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  fetch("http://localhost:8080/admin-dashboard", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => res.text())
+    .then((data) => console.log(data));
+});
+
 const userID = JSON.parse(localStorage.getItem("user"))[0];
 
-
-  const showAllFarmButton = document.getElementById("show-all-farm-button");
-  showAllFarmButton.addEventListener("click", ()=> {
-    fetch("http://localhost:8080/get-all-farm-details", {
-      method:"GET",
-    })
-    .then((response)=> response.json())
-    .then((farms)=> {
-      console.log(farms)
+const showAllFarmButton = document.getElementById("show-all-farm-button");
+showAllFarmButton.addEventListener("click", () => {
+  fetch("http://localhost:8080/get-all-farm-details", {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((farms) => {
+      console.log(farms);
       const farmTable = document.querySelector("#farm-table");
-      farms.forEach((farm)=>{
+      farms.forEach((farm) => {
         const row = document.createElement("tr");
-        row.innerHTML=`
+        row.innerHTML = `
         <td class="px-4 py-2">${farm.farmName}</td>
         <td class="px-4 py-2">${farm.emailAddress}</td>
         <td class="px-4 py-2">${farm.firstName}</td>
         <td class="px-4 py-2">${farm.lastName}</td>
         `;
         farmTable.appendChild(row);
-      })
-    })
-  })
-
-
-
+      });
+    });
+});
 
 // MESSAGE STUFF
 

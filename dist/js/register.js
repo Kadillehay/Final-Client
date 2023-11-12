@@ -31,10 +31,11 @@ document
           },
           body: JSON.stringify(formData),
         })
-          .then((res) => res.json())
+          .then((res) => res.text())
           .then((data) => {
             submitted = true;
             if (data) {
+              console.log(data);
               document.getElementById("firstName").value = "";
               document.getElementById("lastName").value = "";
               document.getElementById("emailAddress").value = "";
