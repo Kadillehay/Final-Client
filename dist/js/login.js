@@ -1,3 +1,7 @@
+// localStorage.removeItem("authUser");
+// localStorage.removeItem("user");
+// localStorage.removeItem("token");
+
 const token = JSON.parse(localStorage.getItem("token")) || "";
 let userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
 const emailAdress = document.querySelector("#emailAddress");
@@ -47,4 +51,4 @@ const handleGetFarmerDetails = async () => {
   localStorage.setItem("authUser", JSON.stringify({ ...userAuth, ...user }));
 };
 
-handleSubmit(formData);
+if (formData) handleSubmit(formData);

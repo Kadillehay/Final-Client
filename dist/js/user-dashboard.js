@@ -103,6 +103,7 @@ const fetchDetails = () => {
   fetch("http://localhost:8080/get-details")
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       let ourFarm = null;
       data.forEach((farm) => {
         if (farm.farmName === userAuth.farmName) {
