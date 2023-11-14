@@ -114,4 +114,4 @@ function showAllFunction(globalData) {
 document
   .getElementById("show-all-button")
   .addEventListener("click", () => showAllFunction(globalData));
-// window.addEventListener("DOMContentLoaded", fetchContactMessages);
+window.addEventListener("DOMContentLoaded", fetchContactMessages);
