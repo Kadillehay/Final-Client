@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon.io/favicon-32x32.png">
     <meta charset="UTF-8">
@@ -9,12 +10,13 @@
     <script src="./js/admin.js" defer>
 
     </script>
-  <style>
-      body {
-      font-family: 'Josefin Sans', sans-serif;
-    }
-  </style>
+    <style>
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+        }
+    </style>
 </head>
+
 <body class="bg-gray-100">
 
     <nav class="bg-green-500 p-4">
@@ -26,12 +28,13 @@
                 <li><a href="./services.html" class="text-white hover:underline">Services</a></li>
                 <li><a href="./register.html" class="text-white hover:underline">Register Your Farm</a></li>
                 <li><a href="./login.html" class="text-white hover:underline">Farm Login</a></li>
+                <li id="logout"> <a href="./login.html" class="text-white hover:underline">Logout</a></li>
                 <li><a href="./contact.html" class="text-white hover:underline">Contact</a></li>
-                <li><a href="./admin.html" class="text-white hover:underline">Admin</a></li> 
+                <li><a href="./admin.html" class="text-white hover:underline">Admin</a></li>
             </ul>
             <link
-            href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Orbitron&family=Roboto+Condensed:wght@300;700&display=swap"
-            rel="stylesheet">
+                href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Orbitron&family=Roboto+Condensed:wght@300;700&display=swap"
+                rel="stylesheet">
         </div>
     </nav>
 
@@ -52,13 +55,13 @@
                         </tr>
                     </thead>
                     <tbody id="farm-table">
-                        
+
                         <!-- <tr>
                             <td class="px-4 py-2" id="farm_name">Farm 1</td>
                             <td class="px-4 py-2">Location 1</td>
                             <td class="px-4 py-2">farm1@example.com</td>
                         </tr> -->
-                       
+
                     </tbody>
                 </table>
             </div>
@@ -69,7 +72,7 @@
             </div>
         </div>
 
-     
+
         <div class="bg-white p-4 shadow-md rounded-md border border-gray-300 mb-8">
             <h2 class="text-xl font-semibold mb-4">Contact Messages</h2>
 
@@ -83,13 +86,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                 
+
                         <tr>
                             <td class="px-4 py-2">John Doe</td>
                             <td class="px-4 py-2">johndoe@example.com</td>
                             <td class="px-4 py-2">This is a test message.</td>
                         </tr>
-                 
+
                     </tbody>
                 </table>
             </div>
@@ -102,32 +105,41 @@
 
         <div class="bg-white p-4 shadow-md rounded-md border border-gray-300">
             <h2 class="text-xl font-semibold mb-4">Add New Product</h2>
-    
+
             <form action="/add-product" method="post">
-       
+
                 <div class="mb-4">
                     <label for="productName" class="block text-gray-700 font-bold mb-2">Product Name:</label>
-                    <input type="text" id="productName" name="productName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-     
-                <div class="mb-4">
-                    <label for="productType" class="block text-gray-700 font-bold mb-2">Product Type:</label>
-                    <input type="text" id="productType" name="productType" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-                </div>
-  
-                <div class="mb-4">
-                    <label for="productQuantity" class="block text-gray-700 font-bold mb-2">Season Available:</label>
-                    <input type="number" id="productQuantity" name="productQuantity" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-                </div>
-         
-                <div class="mb-4">
-                    <label for="specialNotes" class="block text-gray-700 font-bold mb-2">Special Notes:</label>
-                    <textarea id="specialNotes" name="specialNotes" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
-                </div>
-      
-                <div class="flex items-center justify-center">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                        Add Product
-                    </button>
-                </div>
+                    <input type="text" id="productName" name="productName"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        required>
+
+                    <div class="mb-4">
+                        <label for="productType" class="block text-gray-700 font-bold mb-2">Product Type:</label>
+                        <input type="text" id="productType" name="productType"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="productQuantity" class="block text-gray-700 font-bold mb-2">Season
+                            Available:</label>
+                        <input type="number" id="productQuantity" name="productQuantity"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="specialNotes" class="block text-gray-700 font-bold mb-2">Special Notes:</label>
+                        <textarea id="specialNotes" name="specialNotes" rows="4"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                    </div>
+
+                    <div class="flex items-center justify-center">
+                        <button type="submit"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            Add Product
+                        </button>
+                    </div>
             </form>
         </div>
