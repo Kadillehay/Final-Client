@@ -1,26 +1,35 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//   const token = JSON.parse(localStorage.getItem("token"));
-//   fetch("http://localhost:8080/admin-dashboard", {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${token}`,
-//     },
-//   })
-//     .then((res) => res.text())
-//     .then((data) => console.log(data));
-// });
+document.addEventListener("DOMContentLoaded", () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  fetch("http://localhost:8080/admin-dashboard", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((user) => {
+      if (!user.isAdmin) window.location.href = "./user-dashboard.html";
+      else fetchContactMessages();
+    })
+    .catch((e) => {
+      console.error("Not authorized");
+      window.location.href = "./user-dashboard.html";
+    });
+});
 
-const userID = JSON.parse(localStorage.getItem("user"))[0];
+// const userID = JSON.parse(localStorage.getItem("user"))[0];
 
 const showAllFarmButton = document.getElementById("show-all-farm-button");
 showAllFarmButton.addEventListener("click", () => {
-  fetch("http://localhost:8080/get-user-farm-details", {
-    method: "POST",
+  const token = JSON.parse(localStorage.getItem("token"));
+
+  fetch("http://localhost:8080/get-all-farms", {
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(userID),
   })
     .then((response) => response.json())
     .then((farms) => {
@@ -51,7 +60,14 @@ function displayMessages(messages) {
 }
 function fetchContactMessages() {
   const showAllButton = document.getElementById("show-all-button");
-  fetch("http://localhost:8080/admin")
+  const token = JSON.parse(localStorage.getItem("token"));
+  fetch("http://localhost:8080/admin-contact", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -114,4 +130,3 @@ function showAllFunction(globalData) {
 document
   .getElementById("show-all-button")
   .addEventListener("click", () => showAllFunction(globalData));
-// window.addEventListener("DOMContentLoaded", fetchContactMessages);
