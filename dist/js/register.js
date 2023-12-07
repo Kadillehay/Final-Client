@@ -46,14 +46,14 @@ document
               localStorage.setItem( 
                 "user", 
                 JSON.stringify([myDetails?.id, myDetails?.farmName]) 
-              );
-
-              localStorage.setItem(
-                "authUser",
-
-                JSON.stringify({ ...myDetails, auth: true })
-              );
-              window.location.href = "./farmdetails.html";
+              ); 
+ 
+              localStorage.setItem( 
+                "authUser", 
+ 
+                JSON.stringify({ ...myDetails, auth: true }) 
+              ); 
+              window.location.href = "./farmdetails.html"; 
             } else {
               alert("Registration failed. Please try again.");
             }
@@ -76,4 +76,4 @@ document
     }
   });
 const registrationForm = document.getElementById("registrationForm");
-// registrationForm.addEventListener("submit", submitForm);
+// registrationForm.addEventListener("submit", submitForm); 
