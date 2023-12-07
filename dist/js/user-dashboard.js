@@ -4,12 +4,12 @@ const token = JSON.parse(localStorage.getItem("token"));
 if (!token) window.location.href = "./login";
 document.addEventListener("DOMContentLoaded", () => { 
   fetch("http://localhost:8080/get-farmer-details", { 
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
+    method: "GET", 
+    headers: { 
+      "Content-Type": "application/json", 
       Authorization: `Bearer ${token}`,  
-    },
-  })
+    }, 
+  }) 
    .then((res) => res.json())
    .then((user) =>
       localStorage.setItem("authUser", JSON.stringify({ ...userAuth, ...user }))
