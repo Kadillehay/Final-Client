@@ -109,13 +109,13 @@ const fetchDetails = () => {
       let ourFarm = null; 
       data.forEach((farm) => { 
         if (farm.farmName === userAuth.farmName) { 
-          ourFarm = farm;
-        }
-      });
-      meatFoods.textContent = "";
-      vegFoods.textContent = "";
-      fruitFoods.textContent = "";
-      dairyFoods.textContent = "";
+          ourFarm = farm; 
+        } 
+      }); 
+      meatFoods.textContent = ""; 
+      vegFoods.textContent = ""; 
+      fruitFoods.textContent = ""; 
+      dairyFoods.textContent = ""; 
 
       for (let food in ourFarm) {
         if (ourFarm[food] && typeof ourFarm[food] === "boolean") {
@@ -186,14 +186,14 @@ const fetchDetails = () => {
               break;
             default:
               console.log("no food available");
-          }
-        }
-      }
-    });
-};
-
-window.addEventListener("load", fetchDetails);
-
-viewFoodsBtn.addEventListener("click", () => {
-  window.location.href = "./farmdetails.html";
-});
+          } 
+        } 
+      } 
+    }); 
+}; 
+ 
+window.addEventListener("load", fetchDetails); 
+ 
+viewFoodsBtn.addEventListener("click", () => { 
+  window.location.href = "./farmdetails.html"; 
+}); 
