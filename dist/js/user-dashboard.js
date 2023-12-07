@@ -57,19 +57,19 @@ document.getElementById("updateButton").addEventListener("click", (e) => {
             JSON.stringify({ ...data, auth: true }) 
           ); 
           localStorage.setItem( 
-            "user",
-            JSON.stringify([data?.id, data?.farmName])
-          );
-          alert("Update successful!");
-          // Optionally, update the user's details in the local storage
+            "user", 
+            JSON.stringify([data?.id, data?.farmName]) 
+          ); 
+          alert("Update successful!"); 
+          // Optionally, update the user's details in the local storage 
         } else {
           alert("Update failed. Please try again.");
         }
       })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("An error occurred. Please try again later.");
-      });
+      .catch((error) => { 
+        console.error("Error:", error); 
+        alert("An error occurred. Please try again later."); 
+      }); 
   }
 });
 
