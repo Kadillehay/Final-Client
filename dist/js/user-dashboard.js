@@ -12,9 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }) 
    .then((res) => res.json())
    .then((user) =>
-      localStorage.setItem("authUser", JSON.stringify({ ...userAuth, ...user }))
-    );
-});
+      localStorage.setItem("authUser", JSON.stringify({ ...userAuth, ...user })) 
+    ); 
+}); 
 //UPDATE USER STUFF HERE:
 document.getElementById("updateButton").addEventListener("click", (e) => {
   e.preventDefault();
@@ -23,23 +23,23 @@ document.getElementById("updateButton").addEventListener("click", (e) => {
   const updatedPassword = document.getElementById("farmPassword").value;
   const updatedPhoneNumber = document.getElementById("phoneNumber").value;
 
-  const updatedData = {
-    originalEmail: userAuth.emailAddress,
-    originalPassword: userAuth.password,
+  const updatedData = { 
+    originalEmail: userAuth.emailAddress, 
+    originalPassword: userAuth.password, 
   };
-  if (updatedFarmName) {
-    updatedData["farmName"] = updatedFarmName;
-  }
-  if (updatedEmail) {
-    updatedData["emailAddress"] = updatedEmail;
-  }
-  if (updatedPassword) {
-    updatedData["password"] = updatedPassword;
-  }
-  if (updatedPhoneNumber) {
-    updatedData["phoneNumber"] = updatedPhoneNumber;
-  }
-  console.log(updatedData);
+  if (updatedFarmName) { 
+    updatedData["farmName"] = updatedFarmName; 
+  } 
+  if (updatedEmail) { 
+    updatedData["emailAddress"] = updatedEmail; 
+  } 
+  if (updatedPassword) { 
+    updatedData["password"] = updatedPassword; 
+  } 
+  if (updatedPhoneNumber) { 
+    updatedData["phoneNumber"] = updatedPhoneNumber; 
+  } 
+  console.log(updatedData); 
   if (Object.keys(updatedData).length > 0) {
     fetch("http://localhost:8080/update-user", {
       method: "POST",
