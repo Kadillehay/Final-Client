@@ -31,21 +31,21 @@ document
           },
           body: JSON.stringify(formData),
         })
-          .then((res) => res.text())
+          .then((res) => res.text()) 
           .then((data) => {
             submitted = true;
             if (data) {
-              console.log(data);
+              console.log(data); 
               document.getElementById("firstName").value = "";
               document.getElementById("lastName").value = "";
               document.getElementById("emailAddress").value = "";
               document.getElementById("password").value = "";
               document.getElementById("farmName").value = "";
               alert("Registration successful!");
-              const myDetails = data?.id;
-              localStorage.setItem(
-                "user",
-                JSON.stringify([myDetails?.id, myDetails?.farmName])
+              const myDetails = data?.id; 
+              localStorage.setItem( 
+                "user", 
+                JSON.stringify([myDetails?.id, myDetails?.farmName]) 
               );
 
               localStorage.setItem(
