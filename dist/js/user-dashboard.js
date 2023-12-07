@@ -94,21 +94,21 @@ else {
   farmEmail.value = userAuth.emailAddress; 
   phoneNumber.value = userAuth?.phoneNumber; 
 } 
-const logoutBtn = document.getElementById("logout");
-logoutBtn.addEventListener("click", (e) => {
-  localStorage.removeItem("authUser");
-  localStorage.removeItem("user");
-  localStorage.removeItem("token");
-  if (!userAuth) window.location.href = "../login.html";
-});
-const fetchDetails = () => {
-  fetch("http://localhost:8080/get-details")
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      let ourFarm = null;
-      data.forEach((farm) => {
-        if (farm.farmName === userAuth.farmName) {
+const logoutBtn = document.getElementById("logout"); 
+logoutBtn.addEventListener("click", (e) => { 
+  localStorage.removeItem("authUser"); 
+  localStorage.removeItem("user"); 
+  localStorage.removeItem("token"); 
+  if (!userAuth) window.location.href = "../login.html"; 
+}); 
+const fetchDetails = () => { 
+  fetch("http://localhost:8080/get-details") 
+    .then((response) => response.json()) 
+    .then((data) => { 
+      console.log(data); 
+      let ourFarm = null; 
+      data.forEach((farm) => { 
+        if (farm.farmName === userAuth.farmName) { 
           ourFarm = farm;
         }
       });
