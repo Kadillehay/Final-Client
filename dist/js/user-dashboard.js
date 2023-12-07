@@ -74,26 +74,26 @@ document.getElementById("updateButton").addEventListener("click", (e) => {
 });
 
 // ALL UPDATING FOOD STUFF BELOW THIS:
-// Selecting html elements
-const farmName = document.querySelector("#farmName");
-const farmEmail = document.querySelector("#farmEmail");
-const phoneNumber = document.querySelector("#phoneNumber");
-const viewFoodsBtn = document.querySelector("#viewFoodsBtn");
+// Selecting html elements 
+const farmName = document.querySelector("#farmName"); 
+const farmEmail = document.querySelector("#farmEmail"); 
+const phoneNumber = document.querySelector("#phoneNumber"); 
+const viewFoodsBtn = document.querySelector("#viewFoodsBtn"); 
 const meatFoods = document.querySelector("#meatFoods");
 const vegFoods = document.querySelector("#vegFoods");
 const fruitFoods = document.querySelector("#fruitFoods");
 const dairyFoods = document.querySelector("#dairyFoods");
-// Fetching the Auth from localStorage(my cookies)
-if (!userAuth.auth) {
-  window.location.href = "/dist/login.html";
-}
-
-// when there is a user authenticated
-else {
-  farmName.value = userAuth.farmName;
-  farmEmail.value = userAuth.emailAddress;
-  phoneNumber.value = userAuth?.phoneNumber;
-}
+// Fetching the Auth from localStorage(my cookies) 
+if (!userAuth.auth) { 
+  window.location.href = "/dist/login.html"; 
+} 
+ 
+// when there is a user authenticated 
+else { 
+  farmName.value = userAuth.farmName; 
+  farmEmail.value = userAuth.emailAddress; 
+  phoneNumber.value = userAuth?.phoneNumber; 
+} 
 const logoutBtn = document.getElementById("logout");
 logoutBtn.addEventListener("click", (e) => {
   localStorage.removeItem("authUser");
