@@ -41,7 +41,7 @@ form.addEventListener("submit", (e) => {
     headers: { 
       "Content-Type": "application/json", 
     }, 
-    body: JSON.stringify(sendDetailsObject), 
+    body: JSON.stringify(sendDetailsObject),  
   }).then(() => { 
     window.location.href = "./user-dashboard.html"; 
   }); 
