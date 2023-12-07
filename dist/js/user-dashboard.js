@@ -1,5 +1,5 @@
-let userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
-const token = JSON.parse(localStorage.getItem("token"));
+ let userAuth = JSON.parse(localStorage.getItem("authUser")) ||  {};
+const token = JSON.parse(localStorage.getItem("token")); 
 
 if (!token) window.location.href = "./login";
 document.addEventListener("DOMContentLoaded", () => {
@@ -7,11 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,  
     },
   })
-    .then((res) => res.json())
-    .then((user) =>
+   .then((res) => res.json())
+   .then((user) =>
       localStorage.setItem("authUser", JSON.stringify({ ...userAuth, ...user }))
     );
 });
