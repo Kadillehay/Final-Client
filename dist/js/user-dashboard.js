@@ -40,23 +40,23 @@ document.getElementById("updateButton").addEventListener("click", (e) => {
     updatedData["phoneNumber"] = updatedPhoneNumber; 
   } 
   console.log(updatedData); 
-  if (Object.keys(updatedData).length > 0) {
-    fetch("http://localhost:8080/update-user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
-          console.log(data);
-          localStorage.setItem(
-            "authUser",
-            JSON.stringify({ ...data, auth: true })
-          );
-          localStorage.setItem(
+  if (Object.keys(updatedData).length > 0) { 
+    fetch("http://localhost:8080/update-user", { 
+      method: "POST", 
+      headers: { 
+        "Content-Type": "application/json", 
+      }, 
+      body: JSON.stringify(updatedData), 
+    }) 
+      .then((res) => res.json()) 
+      .then((data) => { 
+        if (data) { 
+          console.log(data); 
+          localStorage.setItem( 
+            "authUser", 
+            JSON.stringify({ ...data, auth: true }) 
+          ); 
+          localStorage.setItem( 
             "user",
             JSON.stringify([data?.id, data?.farmName])
           );
