@@ -9,6 +9,7 @@ const fetchDetails = () => {
     .then((data) => { 
       let ourFarm = null; 
       data.forEach((farm) => { 
+        
         if (farm.farmName === userAuth.farmName) { 
           ourFarm = farm; 
         } 
