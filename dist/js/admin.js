@@ -19,11 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
 }); 
 
 // const userID = JSON.parse(localStorage.getItem("user"))[0]; 
-
+let showAllFarms = false;
 const showAllFarmButton = document.getElementById("show-all-farm-button"); 
 showAllFarmButton.addEventListener("click", () => { 
   const token = JSON.parse(localStorage.getItem("token")); 
- 
+ if (!showAllFarms){
   fetch("http://localhost:8080/get-all-farms", { 
     method: "GET", 
     headers: { 
@@ -35,6 +35,7 @@ showAllFarmButton.addEventListener("click", () => {
     .then((farms) => { 
       console.log(farms); 
       const farmTable = document.querySelector("#farm-table"); 
+      farmTable.innerHTML="";
       farms.forEach((farm) => { 
         const row = document.createElement("tr"); 
         row.innerHTML = ` 
@@ -45,7 +46,15 @@ showAllFarmButton.addEventListener("click", () => {
         `;
         farmTable.appendChild(row);
       }); 
+      showAllFarms=true;
+      showAllFarmButton.textContent = "Show Less";
     }); 
+  }else{
+    const farmTable = document.querySelector("#farm-table");
+    farmTable.innerHTML="";
+    showAllFarms=false;
+    showAllFarmButton.textContent="Show All";
+  }
 }); 
 
 // MESSAGE STUFF
