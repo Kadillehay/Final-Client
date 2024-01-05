@@ -24,7 +24,7 @@ const showAllFarmButton = document.getElementById("show-all-farm-button");
 showAllFarmButton.addEventListener("click", () => { 
   const token = JSON.parse(localStorage.getItem("token")); 
  if (!showAllFarms){
-  fetch("http://localhost:8080/get-all-farms", { 
+  fetch("http://localhost:8080/user-info", { 
     method: "GET", 
     headers: { 
       "Content-Type": "application/json", 

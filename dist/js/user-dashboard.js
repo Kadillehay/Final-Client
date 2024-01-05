@@ -2,6 +2,7 @@
 const token = JSON.parse(localStorage.getItem("token")); 
 
  if (!token) window.location.href = "./login";
+ 
 document.addEventListener("DOMContentLoaded", () => { 
   fetch("http://localhost:8080/get-farmer-details", { 
     method: "GET", 
