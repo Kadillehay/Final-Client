@@ -31,29 +31,30 @@ document
           },
           body: JSON.stringify(formData),
         })
-          .then((res) => res.text()) 
+          .then((res) => res.text())
           .then((data) => {
             submitted = true;
             if (data) {
-              console.log(data); 
+              console.log(data);
               document.getElementById("firstName").value = "";
               document.getElementById("lastName").value = "";
               document.getElementById("emailAddress").value = "";
               document.getElementById("password").value = "";
               document.getElementById("farmName").value = "";
+              localStorage.setItem("token", JSON.stringify(data));
               alert("Registration successful!");
-              const myDetails = data?.id; 
-              localStorage.setItem( 
-                "user", 
-                JSON.stringify([myDetails?.id, myDetails?.farmName]) 
-              ); 
- 
-              localStorage.setItem( 
-                "authUser", 
- 
-                JSON.stringify({ ...myDetails, auth: true }) 
-              ); 
-              window.location.href = "./farmdetails.html"; 
+              const myDetails = data?.id;
+              localStorage.setItem(
+                "user",
+                JSON.stringify([myDetails?.id, myDetails?.farmName])
+              );
+
+              localStorage.setItem(
+                "authUser",
+
+                JSON.stringify({ ...myDetails, auth: true })
+              );
+              window.location.href = "./farmdetails.html";
             } else {
               alert("Registration failed. Please try again.");
             }
@@ -76,4 +77,4 @@ document
     }
   });
 const registrationForm = document.getElementById("registrationForm");
-// registrationForm.addEventListener("submit", submitForm); 
+// registrationForm.addEventListener("submit", submitForm);
