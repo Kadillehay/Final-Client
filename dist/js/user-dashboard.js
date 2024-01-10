@@ -1,4 +1,21 @@
-const userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
+ let userAuth = JSON.parse(localStorage.getItem("authUser")) ||  {};
+const token = JSON.parse(localStorage.getItem("token")); 
+
+ if (!token) window.location.href = "./login";
+ 
+document.addEventListener("DOMContentLoaded", () => { 
+  fetch("http://localhost:8080/get-farmer-details", { 
+    method: "GET", 
+    headers: { 
+      "Content-Type": "application/json", 
+      Authorization: `Bearer ${token}`,  
+    }, 
+  }) 
+   .then((res) => res.json())
+   .then((user) =>
+      localStorage.setItem("authUser", JSON.stringify({ ...userAuth, ...user })) 
+    ); 
+}); 
 //UPDATE USER STUFF HERE:
 document.getElementById("updateButton").addEventListener("click", (e) => {
   e.preventDefault();
@@ -7,97 +24,99 @@ document.getElementById("updateButton").addEventListener("click", (e) => {
   const updatedPassword = document.getElementById("farmPassword").value;
   const updatedPhoneNumber = document.getElementById("phoneNumber").value;
 
-  const updatedData = {
-    originalEmail: userAuth.emailAddress,
-    originalPassword: userAuth.password,
+  const updatedData = { 
+    originalEmail: userAuth.emailAddress, 
+    originalPassword: userAuth.password, 
   };
-  if (updatedFarmName) {
-    updatedData["farmName"] = updatedFarmName;
-  }
-  if (updatedEmail) {
-    updatedData["emailAddress"] = updatedEmail;
-  }
-  if (updatedPassword) {
-    updatedData["password"] = updatedPassword;
-  }
-  if (updatedPhoneNumber) {
-    updatedData["phoneNumber"] = updatedPhoneNumber;
-  }
-  console.log(updatedData);
-  if (Object.keys(updatedData).length > 0) {
-    fetch("http://localhost:8080/update-user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
-          console.log(data);
-          localStorage.setItem(
-            "authUser",
-            JSON.stringify({ ...data, auth: true })
-          );
-          localStorage.setItem(
-            "user",
-            JSON.stringify([data?.id, data?.farmName])
-          );
-          alert("Update successful!");
-          // Optionally, update the user's details in the local storage
+  if (updatedFarmName) { 
+    updatedData["farmName"] = updatedFarmName; 
+  } 
+  if (updatedEmail) { 
+    updatedData["emailAddress"] = updatedEmail; 
+  } 
+  if (updatedPassword) { 
+    updatedData["password"] = updatedPassword; 
+  } 
+  if (updatedPhoneNumber) { 
+    updatedData["phoneNumber"] = updatedPhoneNumber; 
+  } 
+  console.log(updatedData); 
+  if (Object.keys(updatedData).length > 0) { 
+    fetch("http://localhost:8080/update-user", { 
+      method: "POST", 
+      headers: { 
+        "Content-Type": "application/json", 
+      }, 
+      body: JSON.stringify(updatedData), 
+    }) 
+      .then((res) => res.json()) 
+      .then((data) => { 
+        if (data) { 
+          console.log(data); 
+          localStorage.setItem( 
+            "authUser", 
+            JSON.stringify({ ...data, auth: true }) 
+          ); 
+          localStorage.setItem( 
+            "user", 
+            JSON.stringify([data?.id, data?.farmName]) 
+          ); 
+          alert("Update successful!"); 
+          // Optionally, update the user's details in the local storage 
         } else {
           alert("Update failed. Please try again.");
         }
       })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("An error occurred. Please try again later.");
-      });
+      .catch((error) => { 
+        console.error("Error:", error); 
+        alert("An error occurred. Please try again later."); 
+      }); 
   }
 });
 
 // ALL UPDATING FOOD STUFF BELOW THIS:
-// Selecting html elements
-const farmName = document.querySelector("#farmName");
-const farmEmail = document.querySelector("#farmEmail");
-const phoneNumber = document.querySelector("#phoneNumber");
-const viewFoodsBtn = document.querySelector("#viewFoodsBtn");
+// Selecting html elements 
+const farmName = document.querySelector("#farmName"); 
+const farmEmail = document.querySelector("#farmEmail"); 
+const phoneNumber = document.querySelector("#phoneNumber"); 
+const viewFoodsBtn = document.querySelector("#viewFoodsBtn"); 
 const meatFoods = document.querySelector("#meatFoods");
 const vegFoods = document.querySelector("#vegFoods");
 const fruitFoods = document.querySelector("#fruitFoods");
 const dairyFoods = document.querySelector("#dairyFoods");
-// Fetching the Auth from localStorage(my cookies)
-if (!userAuth.auth) {
-  window.location.href = "/dist/login.html";
-}
-
-// when there is a user authenticated
-else {
-  farmName.value = userAuth.farmName;
-  farmEmail.value = userAuth.emailAddress;
-  phoneNumber.value = userAuth?.phoneNumber;
-}
-const logoutBtn = document.getElementById("logout");
-logoutBtn.addEventListener("click", () => {
-  localStorage.removeItem("authUser");
-  localStorage.removeItem("user")
-  if (!userAuth) window.location.href = "../login.html";
-});
-const fetchDetails = () => {
-  fetch("http://localhost:8080/get-details")
-    .then((response) => response.json())
-    .then((data) => {
-      let ourFarm = null;
-      data.forEach((farm) => {
-        if (farm.farmName === userAuth.farmName) {
-          ourFarm = farm;
-        }
-      });
-      meatFoods.textContent = "";
-      vegFoods.textContent = "";
-      fruitFoods.textContent = "";
-      dairyFoods.textContent = "";
+// Fetching the Auth from localStorage(my cookies) 
+if (!userAuth.auth) { 
+  window.location.href = "/dist/login.html"; 
+} 
+ 
+// when there is a user authenticated 
+else { 
+  farmName.value = userAuth.farmName; 
+  farmEmail.value = userAuth.emailAddress; 
+  phoneNumber.value = userAuth?.phoneNumber; 
+} 
+const logoutBtn = document.getElementById("logout"); 
+logoutBtn.addEventListener("click", (e) => { 
+  localStorage.removeItem("authUser"); 
+  localStorage.removeItem("user"); 
+  localStorage.removeItem("token"); 
+  if (!userAuth) window.location.href = "../login.html"; 
+}); 
+const fetchDetails = () => { 
+  fetch("http://localhost:8080/get-details") 
+    .then((response) => response.json()) 
+    .then((data) => { 
+      console.log(data); 
+      let ourFarm = null; 
+      data.forEach((farm) => { 
+        if (farm.farmName === userAuth.farmName) { 
+          ourFarm = farm; 
+        } 
+      }); 
+      meatFoods.textContent = ""; 
+      vegFoods.textContent = ""; 
+      fruitFoods.textContent = ""; 
+      dairyFoods.textContent = ""; 
 
       for (let food in ourFarm) {
         if (ourFarm[food] && typeof ourFarm[food] === "boolean") {
@@ -168,14 +187,14 @@ const fetchDetails = () => {
               break;
             default:
               console.log("no food available");
-          }
-        }
-      }
-    });
-};
-
-window.addEventListener("load", fetchDetails);
-
-viewFoodsBtn.addEventListener("click", () => {
-  window.location.href = "./farmdetails.html";
-});
+          } 
+        } 
+      } 
+    }); 
+}; 
+ 
+window.addEventListener("load", fetchDetails); 
+ 
+viewFoodsBtn.addEventListener("click", () => { 
+  window.location.href = "./farmdetails.html"; 
+}); 

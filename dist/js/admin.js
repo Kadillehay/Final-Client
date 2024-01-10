@@ -1,30 +1,61 @@
-const userID = JSON.parse(localStorage.getItem("user"))[0];
+document.addEventListener("DOMContentLoaded", () => { 
+  const token = JSON.parse(localStorage.getItem("token")); 
+  fetch("http://localhost:8080/admin-dashboard", { 
+    method: "GET", 
+    headers: { 
+      "Content-Type": "application/json", 
+      Authorization: `Bearer ${token}`, 
+    }, 
+  }) 
+    .then((res) => res.json()) 
+    .then((user) => { 
+      if (!user.isAdmin) window.location.href = "./user-dashboard.html"; 
+      else fetchContactMessages(); 
+    }) 
+    .catch((e) => {
+      console.error("Not authorized"); 
+      window.location.href = "./user-dashboard.html"; 
+    }); 
+}); 
 
-
-  const showAllFarmButton = document.getElementById("show-all-farm-button");
-  showAllFarmButton.addEventListener("click", ()=> {
-    fetch("http://localhost:8080/get-all-farm-details", {
-      method:"GET",
-    })
-    .then((response)=> response.json())
-    .then((farms)=> {
-      console.log(farms)
-      const farmTable = document.querySelector("#farm-table");
-      farms.forEach((farm)=>{
-        const row = document.createElement("tr");
-        row.innerHTML=`
+// const userID = JSON.parse(localStorage.getItem("user"))[0]; 
+let showAllFarms = false;
+const showAllFarmButton = document.getElementById("show-all-farm-button"); 
+showAllFarmButton.addEventListener("click", () => { 
+  const token = JSON.parse(localStorage.getItem("token")); 
+ if (!showAllFarms){
+  fetch("http://localhost:8080/user-info", { 
+    method: "GET", 
+    headers: { 
+      "Content-Type": "application/json", 
+      Authorization: `Bearer ${token}`, 
+    }, 
+  }) 
+    .then((response) => response.json()) 
+    .then((farms) => { 
+      console.log(farms); 
+      const farmTable = document.querySelector("#farm-table"); 
+      farmTable.innerHTML="";
+      farms.forEach((farm) => { 
+        const row = document.createElement("tr"); 
+        row.innerHTML = ` 
         <td class="px-4 py-2">${farm.farmName}</td>
         <td class="px-4 py-2">${farm.emailAddress}</td>
         <td class="px-4 py-2">${farm.firstName}</td>
         <td class="px-4 py-2">${farm.lastName}</td>
         `;
         farmTable.appendChild(row);
-      })
-    })
-  })
-
-
-
+      }); 
+      showAllFarms=true;
+      showAllFarmButton.textContent = "Show Less";
+    }); 
+  }else{
+    const farmTable = document.querySelector("#farm-table");
+    farmTable.innerHTML="";
+    showAllFarms=false;
+    showAllFarmButton.textContent="Show All";
+  }
+}); 
 
 // MESSAGE STUFF
 
@@ -38,7 +69,14 @@ function displayMessages(messages) {
 }
 function fetchContactMessages() {
   const showAllButton = document.getElementById("show-all-button");
-  fetch("http://localhost:8080/admin")
+  const token = JSON.parse(localStorage.getItem("token")); 
+  fetch("http://localhost:8080/admin-contact", { 
+    method: "GET", 
+    headers: { 
+      "Content-Type": "application/json", 
+      Authorization: `Bearer ${token}`, 
+    }, 
+  }) 
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -101,4 +139,4 @@ function showAllFunction(globalData) {
 document
   .getElementById("show-all-button")
   .addEventListener("click", () => showAllFunction(globalData));
-// window.addEventListener("DOMContentLoaded", fetchContactMessages);
+// window.addEventListener("DOMContentLoaded", fetchContactMessages); 
