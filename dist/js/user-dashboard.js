@@ -1,5 +1,6 @@
  let userAuth = JSON.parse(localStorage.getItem("authUser")) ||  {};
 const token = JSON.parse(localStorage.getItem("token")); 
+console.log(dogpoop);
 
  if (!token) window.location.href = "./login";
  
