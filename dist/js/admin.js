@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!user.isAdmin) window.location.href = "./user-dashboard.html"; 
       else fetchContactMessages(); 
     }) 
-    .catch((e) => {
+    .catch((e) => { 
       console.error("Not authorized"); 
       window.location.href = "./user-dashboard.html"; 
     }); 

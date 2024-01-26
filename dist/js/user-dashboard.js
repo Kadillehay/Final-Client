@@ -28,7 +28,7 @@ document.getElementById("updateButton").addEventListener("click", (e) => {
   const updatedData = { 
     originalEmail: userAuth.emailAddress, 
     originalPassword: userAuth.password, 
-  };
+  }; 
   if (updatedFarmName) { 
     updatedData["farmName"] = updatedFarmName; 
   } 
