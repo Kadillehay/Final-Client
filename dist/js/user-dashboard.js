@@ -195,7 +195,7 @@ const fetchDetails = () => {
 };
 setTimeout(() => {
   fetchDetails();
-}, 1000);
+}, 500);
 viewFoodsBtn.addEventListener("click", () => {
   window.location.href = "./farmdetails.html";
 });
