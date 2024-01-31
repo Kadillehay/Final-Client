@@ -1,6 +1,6 @@
+window.addEventListener("DOMContentLoaded", fetchDetails);
 let userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
 const token = JSON.parse(localStorage.getItem("token"));
-console.log(dogpoop);
 
 if (!token) window.location.href = "./login";
 
@@ -144,6 +144,7 @@ const fetchDetails = () => {
             case "Tomato":
             case "Carrot":
             case "Broccoli":
+              window.addEventListener("DOMContentLoaded", fetchDetails);
             case "Corn":
               const vegSpan = document.createElement("span");
               vegSpan.classList.add = foodName;
@@ -193,8 +194,6 @@ const fetchDetails = () => {
       }
     });
 };
-
-window.addEventListener("DOMContentLoaded", fetchDetails);
 
 viewFoodsBtn.addEventListener("click", () => {
   window.location.href = "./farmdetails.html";
