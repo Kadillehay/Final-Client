@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", fetchDetails);
+document.addEventListener("click", fetchDetails);
 let userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
 const token = JSON.parse(localStorage.getItem("token"));
 
