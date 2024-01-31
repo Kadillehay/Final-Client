@@ -1,4 +1,3 @@
-document.addEventListener("click", fetchDetails);
 let userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
 const token = JSON.parse(localStorage.getItem("token"));
 
@@ -194,7 +193,7 @@ const fetchDetails = () => {
       }
     });
 };
-
+document.addEventListener("click", fetchDetails);
 viewFoodsBtn.addEventListener("click", () => {
   window.location.href = "./farmdetails.html";
 });
