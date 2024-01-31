@@ -24,7 +24,7 @@ document
         !password == "" &&
         !farmName == ""
       ) {
-        fetch("http://localhost:8080/register", {
+        fetch("https://final-api-v2-production.up.railway.app/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
