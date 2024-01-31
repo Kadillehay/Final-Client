@@ -193,7 +193,9 @@ const fetchDetails = () => {
       }
     });
 };
-document.addEventListener("click", fetchDetails);
+setTimeout(() => {
+  fetchDetails();
+}, 1000);
 viewFoodsBtn.addEventListener("click", () => {
   window.location.href = "./farmdetails.html";
 });
