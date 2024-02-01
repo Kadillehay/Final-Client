@@ -14,6 +14,7 @@ const submitBtn = document.querySelector('button[type="submit"]')
       emailAddress.style.color = 'red'
       emailAddress.style.fontSize = '11px'
       emailAddress.style.fontStyle = 'italic'
+      return
     }
   }
   if (firstName.value === '' || lastName.value === '' || emailAddress.value === '' || password.value === '' || farmName.value === '') {
