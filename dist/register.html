@@ -17,6 +17,16 @@
             background-position: center;
             background-size: cover;
         }
+
+        input::placeholder {
+            font-size: 11px;
+            color: red;
+            font-style: italic;
+        }
+        #emailAddress.invalid {
+            border: 2px solid #ff0000;
+            
+        }
     </style>
     <script src="./js/register.js" defer>
 
@@ -62,7 +72,7 @@
                 </div>
                 <div>
                     <label for="emailAddress" class="block text-sm font-medium text-gray-700">Email Address</label>
-                    <input type="email" id="emailAddress" class="mt-1 block w-full rounded-md border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200">
+                    <input type="email" id="emailAddress" class="mt-1 block w-full rounded-md border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200"  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
                 </div>
                 <div>
                     <label for="password" class="block text-sm font-medium text-gray-700">Password</label>

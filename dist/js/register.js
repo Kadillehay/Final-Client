@@ -1,29 +1,53 @@
-let submitted = false;
+// Selecting form fields
+const firstName = document.getElementById("firstName")
+const lastName = document.getElementById("lastName")
+const emailAddress = document.getElementById("emailAddress")
+const password = document.getElementById("password")
+const farmName = document.getElementById("farmName")
+const submitBtn = document.querySelector('button[type="submit"]')
 
-document
-  .querySelector('button[type="submit"]')
-  .addEventListener("click", function submitForm(e) {
+ const  validateFormFields = (firstName,lastName,emailAddress,password,farmName) => {
+  const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (emailAddress.value !== '' && !pattern.test(emailAddress.value)) {
+    if(emailAddress) {
+      emailAddress.value = 'Invalid email format!'
+      emailAddress.style.color = 'red'
+      emailAddress.style.fontSize = '11px'
+      emailAddress.style.fontStyle = 'italic'
+    }
+  }
+  if (firstName.value === '' || lastName.value === '' || emailAddress.value === '' || password.value === '' || farmName.value === '') {
+      firstName.placeholder = "This field cannot be blank";
+      lastName.placeholder = "This field cannot be blank";
+      emailAddress.placeholder = "This field cannot be blank";
+      password.placeholder = "This field cannot be blank";
+      farmName.placeholder = "This field cannot be blank";
+      return false
+    }  
+    return true
+}
+
+  let submitted = false;
+
+
+  submitBtn.addEventListener("click",submitForm);
+
+  function submitForm(e) {
     e.preventDefault();
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    const emailAddress = document.getElementById("emailAddress").value;
-    const password = document.getElementById("password").value;
-    const farmName = document.getElementById("farmName").value;
-    if (firstName && lastName && emailAddress && password && farmName) {
+   
+    
+      const isValid = validateFormFields(firstName,lastName,emailAddress,password,farmName)
+      console.log(isValid)
+      if (!isValid) return
+
+ 
       const formData = {
-        firstName,
-        lastName,
-        emailAddress,
-        password,
-        farmName,
+        firstName: firstName.value,
+        lastName:lastName.value,
+        emailAddress:emailAddress.value,
+        password:password.value,
+        farmName:farmName.value,
       };
-      if (
-        !firstName == "" &&
-        !lastName == "" &&
-        !emailAddress == "" &&
-        !password == "" &&
-        !farmName == ""
-      ) {
         fetch("https://final-api-v2-production.up.railway.app/register", {
           method: "POST",
           headers: {
@@ -35,12 +59,11 @@ document
           .then((data) => {
             submitted = true;
             if (data) {
-              console.log(data);
-              document.getElementById("firstName").value = "";
-              document.getElementById("lastName").value = "";
-              document.getElementById("emailAddress").value = "";
-              document.getElementById("password").value = "";
-              document.getElementById("farmName").value = "";
+             firstName.value = "";
+              lastName.value = "";
+              emailAddress.value = "";
+              password.value = "";
+              farmName.value = "";
               localStorage.setItem("token", JSON.stringify(data));
               alert("Registration successful!");
               const myDetails = data?.id;
@@ -63,18 +86,5 @@ document
             console.error("Error:", error);
             alert("An error occurred. Please try again later.");
           });
-      } else {
-      }
-    } else {
-      if (!submitted) {
-        document.getElementById("firstName").placeholder = "Required";
-        document.getElementById("lastName").placeholder = "Required";
-        document.getElementById("emailAddress").placeholder = "Required";
-        document.getElementById("password").placeholder = "Required";
-        document.getElementById("farmName").placeholder = "Required";
-      }
-      alert("Fill all the fields!");
-    }
-  });
-const registrationForm = document.getElementById("registrationForm");
-// registrationForm.addEventListener("submit", submitForm);
+     
+  }
