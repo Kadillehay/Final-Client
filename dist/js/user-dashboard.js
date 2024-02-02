@@ -2,20 +2,61 @@ let userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
 const token = JSON.parse(localStorage.getItem("token"));
 
 if (!token) window.location.href = "./login";
+// ALL UPDATING FOOD STUFF BELOW THIS:
+// Selecting html elements
+const farmName = document.querySelector("#farmName");
+const farmEmail = document.querySelector("#farmEmail");
+const phoneNumber = document.querySelector("#phoneNumber");
+const viewFoodsBtn = document.querySelector("#viewFoodsBtn");
+const meatFoods = document.querySelector("#meatFoods");
+const vegFoods = document.querySelector("#vegFoods");
+const fruitFoods = document.querySelector("#fruitFoods");
+const dairyFoods = document.querySelector("#dairyFoods");
 
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("https://final-api-v2-production.up.railway.app/get-farmer-details", {
+
+document.addEventListener("readystatechange", (e => {
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener("DOMContentLoaded", () => {
+
+      loadFarmerDetails()
+      fetchDetails()
+    }) 
+  }else {
+    loadFarmerDetails()
+    fetchDetails()
+  }
+}))
+
+async function loadFarmerDetails() {
+  console.log("User Auth =====> " + JSON.stringify(userAuth))
+  console.log("Loading farmer details...")
+  const res = await fetch("https://final-api-v2-production.up.railway.app/get-farmer-details", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   })
-    .then((res) => res.json())
-    .then((user) =>
+    const user = await res.json();
+  console.log("USER from api: " + JSON.stringify(user))
       localStorage.setItem("authUser", JSON.stringify({ ...userAuth, ...user }))
-    );
-});
+      // Fetching the Auth from localStorage(my cookies)
+      if (!userAuth.auth) {
+        window.location.href = "/dist/login.html";
+      }
+
+      // when there is a user authenticated
+      else {
+        if (user) {
+
+          farmName.value = userAuth?.farmName || user.farmName
+          farmEmail.value = userAuth?.emailAddress || user.emailAddress
+          phoneNumber.value = userAuth?.phoneNumber || user.phoneNumber
+        }
+      }
+     console.log("Farmer details are loaded!")
+}
 //UPDATE USER STUFF HERE:
 document.getElementById("updateButton").addEventListener("click", (e) => {
   e.preventDefault();
@@ -74,27 +115,8 @@ document.getElementById("updateButton").addEventListener("click", (e) => {
   }
 });
 
-// ALL UPDATING FOOD STUFF BELOW THIS:
-// Selecting html elements
-const farmName = document.querySelector("#farmName");
-const farmEmail = document.querySelector("#farmEmail");
-const phoneNumber = document.querySelector("#phoneNumber");
-const viewFoodsBtn = document.querySelector("#viewFoodsBtn");
-const meatFoods = document.querySelector("#meatFoods");
-const vegFoods = document.querySelector("#vegFoods");
-const fruitFoods = document.querySelector("#fruitFoods");
-const dairyFoods = document.querySelector("#dairyFoods");
-// Fetching the Auth from localStorage(my cookies)
-if (!userAuth.auth) {
-  window.location.href = "/dist/login.html";
-}
 
-// when there is a user authenticated
-else {
-  farmName.value = userAuth.farmName;
-  farmEmail.value = userAuth.emailAddress;
-  phoneNumber.value = userAuth?.phoneNumber;
-}
+
 const logoutBtn = document.getElementById("logout");
 logoutBtn.addEventListener("click", (e) => {
   localStorage.removeItem("authUser");
@@ -102,22 +124,22 @@ logoutBtn.addEventListener("click", (e) => {
   localStorage.removeItem("token");
   if (!userAuth) window.location.href = "../login.html";
 });
-const fetchDetails = () => {
-  fetch("https://final-api-v2-production.up.railway.app/get-details")
-    .then((response) => response.json())
-    .then((data) => {
+const fetchDetails = async() => {
+ const response =  await fetch("https://final-api-v2-production.up.railway.app/get-details")
+    const data = await response.json();
+    
       console.log(data);
       let ourFarm = null;
       data.forEach((farm) => {
-        if (farm.farmName === userAuth.farmName) {
+        // if (farm.farmName === userAuth.farmName) {
           ourFarm = farm;
-        }
+        // }
       });
       meatFoods.textContent = "";
       vegFoods.textContent = "";
       fruitFoods.textContent = "";
       dairyFoods.textContent = "";
-
+      console.log("OUR FARM::: " + JSON.stringify(ourFarm))
       for (let food in ourFarm) {
         if (ourFarm[food] && typeof ourFarm[food] === "boolean") {
           const foodName = food.charAt(0).toUpperCase() + food.slice(1);
@@ -143,7 +165,7 @@ const fetchDetails = () => {
             case "Tomato":
             case "Carrot":
             case "Broccoli":
-              window.addEventListener("DOMContentLoaded", fetchDetails);
+             
             case "Corn":
               const vegSpan = document.createElement("span");
               vegSpan.classList.add = foodName;
@@ -191,11 +213,13 @@ const fetchDetails = () => {
           }
         }
       }
-    });
 };
+window.addEventListener("DOMContentLoaded", fetchDetails);
 setTimeout(() => {
   fetchDetails();
-}, 500);
+  loadFarmerDetails()
+}, 100);
 viewFoodsBtn.addEventListener("click", () => {
   window.location.href = "./farmdetails.html";
 });
+

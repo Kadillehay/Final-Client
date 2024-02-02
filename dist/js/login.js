@@ -1,8 +1,3 @@
-// localStorage.removeItem("authUser");
-// localStorage.removeItem("user");
-// localStorage.removeItem("token");
-console.log("localStorage.removeItem");
-
 const token = JSON.parse(localStorage.getItem("token")) || "";
 let userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
 const emailAdress = document.querySelector("#emailAddress");
