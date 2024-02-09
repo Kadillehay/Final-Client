@@ -1,4 +1,6 @@
 const userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
+console.log("User auth: " + JSON.stringify(userAuth))
+if (JSON.stringify(userAuth) === '{}') window.location.href = "./login.html";
 let sendDetailsObject = {
   userId: userAuth?.userId,
   farmName: userAuth?.farmName,
