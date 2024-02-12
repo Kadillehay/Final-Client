@@ -17,14 +17,14 @@ const dairyFoods = document.querySelector("#dairyFoods");
 document.addEventListener("readystatechange", (e => {
   
   if (document.readyState === 'loading') {
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", async () => {
 
+      await fetchDetails()
       loadFarmerDetails()
-      fetchDetails()
     }) 
   }else {
-    loadFarmerDetails()
-    fetchDetails()
+    // loadFarmerDetails()
+    fetchDetails().then(()=>loadFarmerDetails());
   }
 }))
 
