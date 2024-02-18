@@ -131,9 +131,9 @@ const fetchDetails = async() => {
       console.log(data);
       let ourFarm = null;
       data.forEach((farm) => {
-        // if (farm.farmName === userAuth.farmName) {
+  //old code      // if (farm.farmName === userAuth.farmName) {
           ourFarm = farm;
-        // }
+ //old code       // }
       });
       meatFoods.textContent = "";
       vegFoods.textContent = "";
