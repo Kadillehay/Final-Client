@@ -143,7 +143,8 @@ const fetchDetails = async() => {
       for (let food in ourFarm) {
         if (ourFarm[food] && typeof ourFarm[food] === "boolean") {
           const foodName = food.charAt(0).toUpperCase() + food.slice(1);
-          console.log(foodName);
+          // console.log(foodName);
+          console.log(food);
           switch (foodName) {
             case "Beef":
             case "Pork":

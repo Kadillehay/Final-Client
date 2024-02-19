@@ -4,7 +4,7 @@ if (JSON.stringify(userAuth) === '{}') window.location.href = "./login.html";
 let sendDetailsObject = {
   userId: userAuth?.userId,
   farmName: userAuth?.farmName,
-};
+}; 
 const fetchDetails = () => {
   fetch("https://final-api-v2-production.up.railway.app/get-details")
     .then((response) => response.json())
