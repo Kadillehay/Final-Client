@@ -1,12 +1,12 @@
 const userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
-console.log("User auth: " + JSON.stringify(userAuth))
-if (JSON.stringify(userAuth) === '{}') window.location.href = "./login.html";
+console.log("User auth: " + JSON.stringify(userAuth));
+if (JSON.stringify(userAuth) === "{}") window.location.href = "./login.html";
 let sendDetailsObject = {
   userId: userAuth?.userId,
   farmName: userAuth?.farmName,
-}; 
+};
 const fetchDetails = () => {
-  fetch("https://final-api-v2-production.up.railway.app/get-details")
+  fetch("http://localhost:8080/get-details")
     .then((response) => response.json())
     .then((data) => {
       let ourFarm = null;
@@ -38,7 +38,7 @@ document.querySelectorAll('input[type="checkbox"]').forEach((input) => {
 });
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  fetch("https://final-api-v2-production.up.railway.app/send-details", {
+  fetch("http://localhost:8080/send-details", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

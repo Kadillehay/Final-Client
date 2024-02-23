@@ -12,7 +12,7 @@ document
       message: message,
     };
     if (name !== "" && email !== "" && message !== "") {
-      fetch("https://final-api-v2-production.up.railway.app/contact", {
+      fetch("http://localhost:8080/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
