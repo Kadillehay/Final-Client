@@ -1,5 +1,5 @@
 const fetchDetails = () => {
-  fetch("http://localhost:8080/get-details")
+  fetch("https://final-api-v2-production.up.railway.app/get-details")
     .then((response) => response.json())
     .then((data) => console.log(data));
 };

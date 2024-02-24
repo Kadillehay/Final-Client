@@ -5,7 +5,40 @@ const emailAddress = document.getElementById("emailAddress");
 const password = document.getElementById("password");
 const farmName = document.getElementById("farmName");
 const submitBtn = document.querySelector('button[type="submit"]');
+const userAuth = JSON.parse(localStorage.getItem("authUser")) || {};
+async function loadFarmerDetails(token) {
+  console.log("Loading farmer details...");
+  try {
+    const res = await fetch(
+      "https://final-api-v2-production.up.railway.app/get-farmer-details",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const user = await res.json();
+    console.log(user);
+    localStorage.setItem("authUser", JSON.stringify({ ...userAuth, ...user }));
+    // Fetching the Auth from localStorage(my cookies)
+    if (!userAuth.auth) {
+      window.location.href = "/dist/login.html";
+    }
 
+    // when there is a user authenticated
+    else {
+      if (token) {
+        console.log("asdas");
+        // localStorage.setItem("user-details", JSON.stringify({}));
+      }
+    }
+    console.log("Farmer details are loaded!");
+  } catch (error) {
+    console.log("Error fetching farmer details..", error);
+  }
+}
 const validateFormFields = (
   firstName,
   lastName,
@@ -64,7 +97,7 @@ function submitForm(e) {
     password: password.value,
     farmName: farmName.value,
   };
-  fetch("http://localhost:8080/register", {
+  fetch("https://final-api-v2-production.up.railway.app/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -93,9 +126,16 @@ function submitForm(e) {
 
           JSON.stringify({ ...myDetails, auth: true })
         );
-        window.location.href = "./farmdetails.html";
       } else {
         alert("Registration failed. Please try again.");
+      }
+      return data;
+    })
+    .then((token) => {
+      if (token) {
+        loadFarmerDetails(token).then(() => {
+          window.location.href = "./user-dashboard.html";
+        });
       }
     })
     .catch((error) => {

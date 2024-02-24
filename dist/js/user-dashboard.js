@@ -13,46 +13,16 @@ const vegFoods = document.querySelector("#vegFoods");
 const fruitFoods = document.querySelector("#fruitFoods");
 const dairyFoods = document.querySelector("#dairyFoods");
 
-document.addEventListener("readystatechange", (e) => {
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", async () => {
-      await fetchDetails();
-      loadFarmerDetails();
-    });
-  } else {
-    // loadFarmerDetails()
-    fetchDetails().then(() => loadFarmerDetails());
-  }
-});
+// Selecting form fields
 
-async function loadFarmerDetails() {
-  console.log("User Auth =====> " + JSON.stringify(userAuth));
-  console.log("Loading farmer details...");
-  const res = await fetch("http://localhost:8080/get-farmer-details", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  const user = await res.json();
-  console.log("USER from api: " + JSON.stringify(user));
-  localStorage.setItem("authUser", JSON.stringify({ ...userAuth, ...user }));
-  // Fetching the Auth from localStorage(my cookies)
-  if (!userAuth.auth) {
-    window.location.href = "/dist/login.html";
-  }
+//Karen Changed 232 to const farmNameField, because farmName is a const already.
+const firstName = document.getElementById("firstName");
+const lastName = document.getElementById("lastName");
+const emailAddress = document.getElementById("farmEmail");
+const password = document.getElementById("farmPassword");
+const farmNameField = document.getElementById("farmName");
+const submitBtn = document.querySelector('button[type="submit"]');
 
-  // when there is a user authenticated
-  else {
-    if (user) {
-      farmName.value = userAuth?.farmName || user.farmName;
-      farmEmail.value = userAuth?.emailAddress || user.emailAddress;
-      phoneNumber.value = userAuth?.phoneNumber || user.phoneNumber;
-    }
-  }
-  console.log("Farmer details are loaded!");
-}
 //UPDATE USER STUFF HERE:
 document.getElementById("updateButton").addEventListener("click", (e) => {
   e.preventDefault();
@@ -77,9 +47,8 @@ document.getElementById("updateButton").addEventListener("click", (e) => {
   if (updatedPhoneNumber) {
     updatedData["phoneNumber"] = updatedPhoneNumber;
   }
-  console.log(updatedData);
   if (Object.keys(updatedData).length > 0) {
-    fetch("http://localhost:8080/update-user", {
+    fetch("https://final-api-v2-production.up.railway.app/update-user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -91,6 +60,7 @@ document.getElementById("updateButton").addEventListener("click", (e) => {
       .then((data) => {
         if (data) {
           console.log(data);
+          localStorage.setItem("token", JSON.stringify(data.updatedToken));
           localStorage.setItem(
             "authUser",
             JSON.stringify({ ...data, auth: true })
@@ -100,6 +70,7 @@ document.getElementById("updateButton").addEventListener("click", (e) => {
             JSON.stringify([data?.id, data?.farmName])
           );
           alert("Update successful!");
+          // location.reload();
           // Optionally, update the user's details in the local storage
         } else {
           alert("Update failed. Please try again.");
@@ -120,10 +91,11 @@ logoutBtn.addEventListener("click", (e) => {
   if (!userAuth) window.location.href = "../login.html";
 });
 const fetchDetails = async () => {
-  const response = await fetch("http://localhost:8080/get-details");
+  const response = await fetch(
+    "https://final-api-v2-production.up.railway.app/get-details"
+  );
   const data = await response.json();
 
-  console.log(data);
   let ourFarm = null;
   data.forEach((farm) => {
     if (farm.farmName === userAuth.farmName) {
@@ -212,21 +184,14 @@ const fetchDetails = async () => {
 window.addEventListener("DOMContentLoaded", fetchDetails);
 setTimeout(() => {
   fetchDetails();
-  loadFarmerDetails();
+  farmName.value = userAuth?.farmName;
+  farmEmail.value = userAuth?.emailAddress;
+  password.value = userAuth?.originalPassword;
+  phoneNumber.value = userAuth?.phoneNumber;
 }, 100);
 viewFoodsBtn.addEventListener("click", () => {
   window.location.href = "./farmdetails.html";
 });
-
-// Selecting form fields
-
-//Karen Changed 232 to const farmNameField, because farmName is a const already.
-const firstName = document.getElementById("firstName");
-const lastName = document.getElementById("lastName");
-const emailAddress = document.getElementById("emailAddress");
-const password = document.getElementById("password");
-const farmNameField = document.getElementById("farmName");
-const submitBtn = document.querySelector('button[type="submit"]');
 
 const validateFormFields = (
   firstName,
@@ -264,7 +229,7 @@ const validateFormFields = (
 
 let submitted = false;
 
-submitBtn.addEventListener("click", submitForm);
+// submitBtn.addEventListener("click", submitForm);
 
 function submitForm(e) {
   e.preventDefault();
@@ -276,7 +241,6 @@ function submitForm(e) {
     password,
     farmNameField
   );
-  console.log(isValid);
   if (!isValid) return;
 
   const formData = {
@@ -286,7 +250,7 @@ function submitForm(e) {
     password: password.value,
     farmNameField: farmName.value,
   };
-  fetch("http://localhost:8080/register", {
+  fetch("https://final-api-v2-production.up.railway.app/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

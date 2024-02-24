@@ -1,140 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon.io/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Orbitron&family=Roboto+Condensed:wght@300;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <title font-body>User Dashboard - Arrowhead Farm Community</title>
+    <style>
+      body {
+        font-family: "Josefin Sans", sans-serif;
+      }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet" />
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon.io/favicon-32x32.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Orbitron&family=Roboto+Condensed:wght@300;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <title font-body>User Dashboard - Arrowhead Farm Community</title>
-  <style>
-    body {
-      font-family: "Josefin Sans", sans-serif;
-    }
+      .bg-banner {
+        background-image: url("./assets/images/syd-wachs-LyL7sVozl_Y-unsplash.jpg");
+        background-repeat: repeat-x;
+        background-color: #fff;
+        background-position: center;
+        background-size: cover;
+      }
+    </style>
+    <script src="./js/user-dashboard.js" defer></script>
+  </head>
 
-    .bg-banner {
-      background-image: url("./assets/images/syd-wachs-LyL7sVozl_Y-unsplash.jpg");
-      background-repeat: repeat-x;
-      background-color: #fff;
-      background-position: center;
-      background-size: cover;
-    }
-  </style>
-  <script src="./js/user-dashboard.js" defer></script>
-</head>
-
-<body class="bg-gray-100">
-  <nav class="bg-green-500 p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <a href="#" class="text-white text-lg font-semibold">AFC</a>
-      <ul class="flex space-x-4">
-        <li>
-          <a href="./index.html" class="text-white hover:underline">Home</a>
-        </li>
-        <li>
-          <a href="./admin.html" class="text-white hover:underline">Admin</a>
-        </li>
-        <li>
-          <a href="./about.html" class="text-white hover:underline">About</a>
-        </li>
-        <li>
-          <a href="./services.html" class="text-white hover:underline">Services</a>
-        </li>
-        <li>
-          <a href="./register.html" class="text-white hover:underline">Register Your Farm</a>
-        </li>
-        <li>
-          <a href="./contact.html" class="text-white hover:underline">Contact</a>
-        </li>
-        <li id="logout">
-          <a href="./login.html" class="text-white hover:underline">Logout</a>
-        </li>
-      </ul>
+  <body class="bg-gray-100">
+    <nav class="bg-green-500 p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="#" class="text-white text-lg font-semibold">AFC</a>
+        <ul class="flex space-x-4">
+          <li>
+            <a href="./index.html" class="text-white hover:underline">Home</a>
+          </li>
+          <li>
+            <a href="./admin.html" class="text-white hover:underline">Admin</a>
+          </li>
+          <li>
+            <a href="./about.html" class="text-white hover:underline">About</a>
+          </li>
+          <li>
+            <a href="./services.html" class="text-white hover:underline"
+              >Services</a
+            >
+          </li>
+          <li>
+            <a href="./register.html" class="text-white hover:underline"
+              >Register Your Farm</a
+            >
+          </li>
+          <li>
+            <a href="./contact.html" class="text-white hover:underline"
+              >Contact</a
+            >
+          </li>
+          <li id="logout">
+            <a href="./login.html" class="text-white hover:underline">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="bg-banner py-40">
+      <div class="container mx-auto text-center">
+        <!-- <p class="text-white text-lg">Welcome to Arrowhead Farm Community</p> -->
+      </div>
     </div>
-  </nav>
-  <div class="bg-banner py-40">
-    <div class="container mx-auto text-center">
-      <!-- <p class="text-white text-lg">Welcome to Arrowhead Farm Community</p> -->
-    </div>
-  </div>
-  <section class="container mx-auto mt-8">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <!-- Farm Details -->
-      <div
-        class="col-span-2 bg-white p-4 shadow-md rounded-md transition-transform transform scale-100 hover:scale-105 hover:shadow-xl hover:shadow-black">
-        <h3 class="text-xl font-semibold text-green-900 mb-2 text-center">
-          Edit Your Information
-        </h3>
-        <form id="farmDetailsForm">
+    <section class="container mx-auto mt-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <!-- Farm Details -->
+        <div
+          class="col-span-2 bg-white p-4 shadow-md rounded-md transition-transform transform scale-100 hover:scale-105 hover:shadow-xl hover:shadow-black"
+        >
+          <h3 class="text-xl font-semibold text-green-900 mb-2 text-center">
+            Edit Your Information
+          </h3>
+          <form id="farmDetailsForm">
+            <div class="mb-4">
+              <label
+                for="farmName"
+                id="farm-name-label"
+                class="block text-sm font-medium text-gray-700 text-lg"
+                >Farm Name</label
+              >
+              <input
+                type="text"
+                id="farmName"
+                name="farmName"
+                class="mt-1 block w-full rounded-md border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                for="farmEmail"
+                class="block text-sm font-medium text-gray-700 text-lg"
+                >Email Address</label
+              >
+              <input
+                type="email"
+                id="farmEmail"
+                name="farmEmail"
+                class="mt-1 block w-full rounded-md border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                for="farmPassword"
+                class="block text-sm font-medium text-gray-700 text-lg"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="farmPassword"
+                name="farmPassword"
+                class="mt-1 block w-full rounded-md border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                for="phoneNumber"
+                class="block text-sm font-medium text-gray-700 text-lg"
+                >Phone Number</label
+              >
+              <input
+                type="text"
+                id="phoneNumber"
+                name="phoneNumber"
+                class="mt-1 block w-full rounded-md border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200"
+              />
+            </div>
+            <button
+              id="updateButton"
+              type="submit"
+              class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full"
+            >
+              Save Updated Information
+            </button>
+          </form>
+        </div>
+
+        <!-- Available Foods -->
+        <div
+          class="col-span-2 bg-white p-4 shadow-md rounded-md transition-transform transform scale-100 hover:scale-105 hover:shadow-xl hover:shadow-black"
+        >
+          <h3 class="text-xl font-semibold text-green-900 mb-2 text-center">
+            Edit Your Available Foods
+          </h3>
+          <h3 class="text-md font-semibold text-green-900 mb-2 text-center">
+            Alter what users can see you have available
+          </h3>
           <div class="mb-4">
-            <label for="farmName" id="farm-name-label" class="block text-sm font-medium text-gray-700 text-lg">Farm
-              Name</label>
-            <input type="text" id="farmName" name="farmName"
-              class="mt-1 block w-full rounded-md border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200" />
+            <h4 class="text-lg font-semibold mb-2">Meat:</h4>
+            <span id="meatFoods"></span>
           </div>
           <div class="mb-4">
-            <label for="farmEmail" class="block text-sm font-medium text-gray-700 text-lg">Email Address</label>
-            <input type="email" id="farmEmail" name="farmEmail"
-              class="mt-1 block w-full rounded-md border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200" />
+            <h4 class="text-lg font-semibold mb-2">Vegetables:</h4>
+            <span id="vegFoods"></span>
           </div>
           <div class="mb-4">
-            <label for="farmPassword" class="block text-sm font-medium text-gray-700 text-lg">Password</label>
-            <input type="password" id="farmPassword" name="farmPassword"
-              class="mt-1 block w-full rounded-md border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200" />
+            <h4 class="text-lg font-semibold mb-2">Fruit:</h4>
+            <span id="fruitFoods"></span>
           </div>
           <div class="mb-4">
-            <label for="phoneNumber" class="block text-sm font-medium text-gray-700 text-lg">Phone Number</label>
-            <input type="text" id="phoneNumber" name="phoneNumber"
-              class="mt-1 block w-full rounded-md border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200" />
+            <h4 class="text-lg font-semibold mb-2">Dairy:</h4>
+            <span id="dairyFoods"></span>
           </div>
-          <button id="updateButton" type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">
-            Save Updated Information
+
+          <!-- <ul id="food-list"></ul> -->
+          <button
+            id="viewFoodsBtn"
+            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full"
+          >
+            Add/Remove Foods
           </button>
-        </form>
-      </div>
-
-      <!-- Available Foods -->
-      <div
-        class="col-span-2 bg-white p-4 shadow-md rounded-md transition-transform transform scale-100 hover:scale-105 hover:shadow-xl hover:shadow-black">
-        <h3 class="text-xl font-semibold text-green-900 mb-2 text-center">
-          Edit Your Available Foods
-        </h3>
-        <h3 class="text-md font-semibold text-green-900 mb-2 text-center">
-          Alter what users can see you have available
-        </h3>
-        <div class="mb-4">
-          <h4 class="text-lg font-semibold mb-2">Meat:</h4>
-          <span id="meatFoods"></span>
-        </div>
-        <div class="mb-4">
-          <h4 class="text-lg font-semibold mb-2">Vegetables:</h4>
-          <span id="vegFoods"></span>
-        </div>
-        <div class="mb-4">
-          <h4 class="text-lg font-semibold mb-2">Fruit:</h4>
-          <span id="fruitFoods"></span>
-        </div>
-        <div class="mb-4">
-          <h4 class="text-lg font-semibold mb-2">Dairy:</h4>
-          <span id="dairyFoods"></span>
-        </div>
-
-        <!-- <ul id="food-list"></ul> -->
-        <button id="viewFoodsBtn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">
-          View Available Foods
-        </button>
-        <div id="availableFoodsList" class="mt-4">
-          <!-- Foods will be displayed here -->
+          <div id="availableFoodsList" class="mt-4">
+            <!-- Foods will be displayed here -->
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-</body>
-
+    </section>
+  </body>
 </html>

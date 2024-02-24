@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const token = JSON.parse(localStorage.getItem("token"));
-  fetch("http://localhost:8080/admin-dashboard", {
+  fetch("https://final-api-v2-production.up.railway.app/admin-dashboard", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -24,7 +24,7 @@ const showAllFarmButton = document.getElementById("show-all-farm-button");
 showAllFarmButton.addEventListener("click", () => {
   const token = JSON.parse(localStorage.getItem("token"));
   if (!showAllFarms) {
-    fetch("http://localhost:8080/user-info", {
+    fetch("https://final-api-v2-production.up.railway.app/user-info", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -70,7 +70,7 @@ function displayMessages(messages) {
 function fetchContactMessages() {
   const showAllButton = document.getElementById("show-all-button");
   const token = JSON.parse(localStorage.getItem("token"));
-  fetch("http://localhost:8080/admin-contact", {
+  fetch("https://final-api-v2-production.up.railway.app/admin-contact", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
